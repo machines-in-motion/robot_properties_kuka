@@ -1,0 +1,17 @@
+is_real_robot: true
+device:
+  name: "iiwa"
+  sensors:
+    encoder:
+      size: 7
+    sensed_torque:
+      size: 7
+  controls:
+    torque:
+      size: 7
+hardware_communication:
+  max_missed_control: 10
+  control_period: 1000000 # in nano second this means 1ms <=> 1kz
+
+host: "192.170.10.1"
+port: 30200
