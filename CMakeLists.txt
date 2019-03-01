@@ -6,7 +6,7 @@ project(robot_properties_${ROBOT})
 
 # find dependencies using catkin
 find_package(catkin REQUIRED COMPONENTS
-#  xacro
+  xacro
 )
 
 # Xacro files of the quadruped
@@ -31,10 +31,10 @@ find_package(catkin REQUIRED COMPONENTS
 #
 #endforeach(xacro_file_name)
 
-set(urdf_files $CMAKE_CURRENT_SOURCE_DIR}/urdf/KUKAiiwa14_mesh.urdf)
-
+#set(urdf_files ${CMAKE_CURRENT_SOURCE_DIR}/urdf/KUKAiiwa14_mesh.urdf)
+#
 # add an abstract target to actually trigger the builds
-add_custom_target(${PROJECT_NAME}_urdf_build_files ALL DEPENDS ${urdf_files})
+#add_custom_target(${PROJECT_NAME}_urdf_build_files ALL DEPENDS ${urdf_files})
 
 catkin_package()
 catkin_python_setup()

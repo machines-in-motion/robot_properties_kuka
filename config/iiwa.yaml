@@ -4,10 +4,12 @@ device:
   sensors:
     encoder:
       size: 7
-    sensed_torque:
+    torque_ext:
+      size: 7
+    torque_tot:
       size: 7
   controls:
-    torque:
+    torque_in:
       size: 7
 hardware_communication:
   max_missed_control: 10
