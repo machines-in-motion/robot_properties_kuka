@@ -9,7 +9,7 @@ device:
     torque_tot:
       size: 7
   controls:
-    torque_in:
+    torque_des:
       size: 7
 hardware_communication:
   max_missed_control: 10
