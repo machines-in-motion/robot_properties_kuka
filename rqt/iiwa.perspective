@@ -64,7 +64,7 @@
               "keys": {
                 "autoscroll": {
                   "type": "repr",
-                  "repr": "False"
+                  "repr": "True"
                 },
                 "plot_type": {
                   "type": "repr",
@@ -72,15 +72,15 @@
                 },
                 "topics": {
                   "type": "repr",
-                  "repr": "[u'/dg__ee_wrench__eeWrench/data[1]', u'/dg__ee_wrench__eeWrench/data[0]', u'/dg__ee_wrench__eeWrench/data[2]']"
+                  "repr": "[u'/dg__ee_wrench__wrench/data[0]', u'/dg__ee_wrench__wrench/data[2]', u'/dg__ee_wrench__wrench/data[1]']"
                 },
                 "y_limits": {
                   "type": "repr",
-                  "repr": "[0.0, 1.0]"
+                  "repr": "[-67.69143991571153, 68.54218434556728]"
                 },
                 "x_limits": {
                   "type": "repr",
-                  "repr": "[0.0, 1.0]"
+                  "repr": "[176.3342981338501, 177.3342981338501]"
                 }
               },
               "groups": {}
@@ -158,11 +158,11 @@
                 },
                 "y_limits": {
                   "type": "repr",
-                  "repr": "[-0.20791917772402846, 0.37794286622856554]"
+                  "repr": "[-76.46200829987241, 77.65948971103529]"
                 },
                 "x_limits": {
                   "type": "repr",
-                  "repr": "[0.0, 1.0]"
+                  "repr": "[176.29953503608704, 177.29953503608704]"
                 }
               },
               "groups": {}
@@ -175,7 +175,7 @@
       "keys": {
         "geometry": {
           "type": "repr(QByteArray.hex)",
-          "repr(QByteArray.hex)": "QtCore.QByteArray('01d9d0cb00020000000001ca0000016e00000b9c000007a1000001cd0000018b00000b990000079e00000000000000000f00')",
+          "repr(QByteArray.hex)": "QtCore.QByteArray('01d9d0cb00020000000001be0000016e00000b90000007a1000001c10000018b00000b8d0000079e00000000000000000f00')",
           "pretty-print": "       n                 "
         },
         "state": {
