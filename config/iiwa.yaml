@@ -15,7 +15,7 @@ device:
       size: 7
 hardware_communication:
   max_missed_control: 10
-  control_period: 1000000 # in nano second this means 1ms <=> 1kz
-
+  control_period: 1000000 # in nano second
+#debug_timer_history_length: 10000
 host: "192.170.10.1"
 port: 30200
