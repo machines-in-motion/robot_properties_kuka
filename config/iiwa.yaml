@@ -2,8 +2,8 @@ is_real_robot: true
 device:
   name: "iiwa"
   sensors:
-	timestamp:
-	  size: 1
+    timestamp:
+      size: 1
     encoder:
       size: 7
     torque_ext:
