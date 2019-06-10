@@ -1,0 +1,23 @@
+is_real_robot: true
+device:
+  name: "iiwa"
+  sensors:
+    timestamp:
+      size: 1
+    encoder:
+      size: 7
+    torque_ext:
+      size: 7
+    torque_tot:
+      size: 7
+  controls:
+    joint_pos_ctr:
+      size: 7
+    ee_wrench_ctr:
+      size: 6
+hardware_communication:
+  max_missed_control: 10
+  control_period: 1000000 # in nano second
+#debug_timer_history_length: 10000
+host: "192.170.10.1"
+port: 30200
