@@ -24,12 +24,6 @@ find_package(catkin REQUIRED COMPONENTS
     mpi_cmake_modules
 )
 
-##########################
-# Build the xacro files. #
-##########################
-
-build_xacro_files()
-
 ##############################
 # Define the Catkin Package. #
 ##############################

@@ -70,32 +70,3 @@ class IiwaRobot(PinBulletWrapper):
         self.pin_robot.computeJointJacobians(q)
         self.pin_robot.framesForwardKinematics(q)
         self.pin_robot.centroidalMomentum(q, dq)
-        
-        
-# if __name__ == "__main__":
-#     # Create a robot instance. This initializes the simulator as well.
-#     robot = IiwaRobot()
-#     tau = np.zeros(7)
-
-#     # Reset the robot to some initial state.
-#     q0 = np.matrix(IiwaConfig.initial_configuration).T
-#     dq0 = np.matrix(IiwaConfig.initial_velocity).T
-#     robot.reset_state(q0, dq0)
-
-
-#     # Run the simulator for 100 steps
-#     for i in range(230):
-#         # TODO: Implement a controller here.
-#         robot.send_joint_command(tau)
-        
-#         # Step the simulator.
-#         p.stepSimulation()
-#         time.sleep(0.1) # You can sleep here if you want to slow down the replay
-
-#     # Read the final state and forces after the stepping.
-#     q, dq = robot.get_state()
-#     active_eff, forces = robot.get_force()
-#     print('q', q)
-#     print('dq', dq)
-#     print('active eff', active_eff)
-#     print('forces', forces)

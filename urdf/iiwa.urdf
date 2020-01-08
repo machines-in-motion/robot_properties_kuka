@@ -6,7 +6,7 @@
   <link name="iiwaBase">
     <inertial>
       <origin xyz="0.00000 0.00000 0.00000"/>
-      <mass value="4.00000"/>
+      <mass value="8.00000"/>
       <inertia ixx="0.00095" iyy="0.00133" izz="0.00118" ixy="0.00000" ixz="-0.00000" iyz="-0.00006"/>
     </inertial>
     <visual>
