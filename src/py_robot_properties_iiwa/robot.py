@@ -56,8 +56,7 @@ class IiwaRobot(PinBulletWrapper):
         super(IiwaRobot, self).__init__(self.robotId, self.pin_robot,
             controlled_joints,
             ['END'],
-            useFixedBase=True
-            )
+            useFixedBase=True)
 
         
     def forward_robot(self, q=None, dq=None):

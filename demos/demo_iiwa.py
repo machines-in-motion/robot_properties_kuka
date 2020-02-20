@@ -1,6 +1,6 @@
 import numpy as np 
 from py_robot_properties_iiwa.config import IiwaConfig
-from py_robot_properties_iiwa.iiwawrapper import IiwaRobot
+from py_robot_properties_iiwa.robot import IiwaRobot
 
 import pinocchio as pin
 import pybullet as p
