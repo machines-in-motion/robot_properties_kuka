@@ -4,14 +4,16 @@ device:
   sensors:
     timestamp:
       size: 1
-    encoder:
+    joint_positions:
       size: 7
-    torque_ext:
+    joint_velocities:
       size: 7
-    torque_tot:
+    joint_torques_external:
+      size: 7
+    joint_torques_total:
       size: 7
   controls:
-    torque_ctr:
+    ctrl_joint_torques:
       size: 7
 hardware_communication:
   max_missed_control: 10
