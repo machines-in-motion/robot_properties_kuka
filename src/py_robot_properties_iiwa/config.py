@@ -14,8 +14,8 @@ class IiwaConfig(object):
     def buildRobotWrapper(cls):
         # Rebuild the robot wrapper instead of using the existing model to
         # also load the visuals.
-        robot = RobotWrapper.BuildFromURDF(cls.urdf_path, cls.meshes_path)
-        return robot
+        robot_model, collision_model, visual_model = se3.buildModelsFromUrdf(cls.urdf_path, cls.meshes_path)
+        return RobotWrapper(robot_model), collision_model, visual_model
         
     # Here we use the same urdf as for the quadruped but without the freeflyer.
     urdf_path = (

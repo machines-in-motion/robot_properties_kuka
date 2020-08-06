@@ -12,15 +12,18 @@ dt = 1e-3
 
 class IiwaRobot(PinBulletWrapper):
     @staticmethod
-    def initPhysicsClient():
-        physicsClient = p.connect(p.GUI)
+    def initPhysicsClient(with_gui=True):
+        if with_gui:
+            physicsClient = p.connect(p.GUI)
+        else:
+            physicsClient = p.connect(p.DIRECT)
         p.setGravity(0,0, -9.81)
         p.setPhysicsEngineParameter(fixedTimeStep=dt, numSubSteps=1)
         return physicsClient
     
-    def __init__(self, physicsClient=None):
+    def __init__(self, physicsClient=None, with_gui=True):
         if physicsClient is None:
-            self.physicsClient = self.initPhysicsClient()
+            self.physicsClient = self.initPhysicsClient(with_gui)
 
         # Load the plain.
         plain_urdf = (rospkg.RosPack().get_path("robot_properties_iiwa") +
@@ -31,15 +34,16 @@ class IiwaRobot(PinBulletWrapper):
         robotStartPos = [0., 0, 0.0]
         robotStartOrientation = p.getQuaternionFromEuler([0,0,0])
 
-        self.urdf_path = IiwaConfig.urdf_path
+        self.config = IiwaConfig()
+        self.urdf_path = self.config.urdf_path
         self.robotId = p.loadURDF(self.urdf_path, robotStartPos,
             robotStartOrientation, flags=p.URDF_USE_INERTIA_FROM_FILE,
-            useFixedBase=True) # why not true?
+            useFixedBase=True) 
         p.getBasePositionAndOrientation(self.robotId)
 
         # Create the robot wrapper in pinocchio.
         package_dirs = [os.path.dirname(os.path.dirname(self.urdf_path)) + '/urdf']
-        self.pin_robot = IiwaConfig.buildRobotWrapper()
+        self.pin_robot, self.collision_model, self.visual_model = IiwaConfig.buildRobotWrapper() #
 
         # Query all the joints.
         num_joints = p.getNumJoints(self.robotId)
