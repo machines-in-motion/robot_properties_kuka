@@ -1,20 +1,34 @@
 <?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>robot_properties_iiwa</name>
-  <version>1.0.0</version>
-  <description>The robot_properties_iiwa package</description>
-  <author email="pfleginj@ethz.ch">Johannes pfleging</author>
-  <author email="sk8001@nyu.edu">Sébastien Kleff</author>
-  <maintainer email="sk8001@nyu.edu">Sébastien Kleff</maintainer>
-  <license>TODO</license>
+    
+    <name>robot_properties_kuka</name>
+    
+    <version>1.0.0</version>
+    
+    <description>
+        URDFs of the KUKA robots and configurations files for different
+        application like controllers, planners and so forth.
+    </description>
+    
+    <author email="mnaveau@tuebingen.mpg.de">Maximilien Naveau</author>
+    <maintainer email="mnaveau@tuebingen.mpg.de">Maximilien Naveau</maintainer>
+    
+    <license>BSD-3-clause</license>
 
-  <buildtool_depend>ament_cmake</buildtool_depend>
-  <buildtool_depend>ament_cmake_python</buildtool_depend>
-  <buildtool_depend>mpi_cmake_modules</buildtool_depend>
-  <!-- We need the xacro package to build the urdf model -->
-  <depend> xacro </depend>
+    <buildtool_depend>ament_python</buildtool_depend>
 
-  <export>
-    <build_type>ament_cmake</build_type>
-  </export>
+    <depend>pybullet</depend>
+    <depend>pinocchio_bullet</depend>
+    <depend>pinocchio</depend>
+    <depend>xacro</depend>
+
+    <test_depend>ament_copyright</test_depend>
+    <test_depend>ament_flake8</test_depend>
+    <test_depend>ament_pep257</test_depend>
+    <test_depend>python3-pytest</test_depend>
+
+    <export>
+        <build_type>ament_python</build_type>
+    </export>
 </package>
