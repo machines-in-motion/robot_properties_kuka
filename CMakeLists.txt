@@ -1,45 +1,54 @@
-######################
-# set up the project #
-######################
-cmake_minimum_required(VERSION 2.8.3)
+#
+# Copyright (c) 2019, New York University and Max Planck Gesellschaft.
+#
+# License BSD-3 clause
+#
 
-set(ROBOT iiwa)
-project(robot_properties_${ROBOT})
+#
+# set up the project
+#
+cmake_minimum_required(VERSION 3.10.2)
 
-# required to use std::shared_ptr in code AND to link the DG plugins
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wl,--no-as-needed")
+project(robot_properties_iiwa)
 
-# ensuring path to libraries are set during install
-set(CMAKE_SKIP_BUILD_RPATH  FALSE)
-set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE)
-set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-set(CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_PREFIX}/lib)
+# Using C++17
+if(NOT CMAKE_C_STANDARD)
+  set(CMAKE_C_STANDARD 99)
+endif()
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 17)
+endif()
 
-############################
-# Search for dependencies. #
-############################
+#
+# Dependencies 
+#
+set(Python_ADDITIONAL_VERSIONS 3.6)
+# depend on ament macros
+find_package(ament_cmake REQUIRED)
+find_package(ament_cmake_python REQUIRED)
+find_package(mpi_cmake_modules REQUIRED)
 
-# find dependencies using catkin
-find_package(catkin REQUIRED COMPONENTS
-    mpi_cmake_modules
-)
+# Export de dependencies.
+ament_export_dependencies(
+  ament_cmake 
+  ament_cmake_python
+  mpi_cmake_modules)
 
-##############################
-# Define the Catkin Package. #
-##############################
+# prepare the final export
+# ament_export_interfaces(export_${PROJECT_NAME} HAS_LIBRARY_TARGET)
 
-catkin_package()
+#
+# Install the python package.
+#
+ament_python_install_package(${PROJECT_NAME} PACKAGE_DIR python/${PROJECT_NAME})
 
-#####################################
-# Define the Catkin Python Package. #
-#####################################
+#
+# Building documentation.
+#
+add_documentation()
 
-catkin_python_setup()
-
-##########################
-# building documentation #
-##########################
-build_doxygen_documentation()
-
-
+#
+# Export as an ament_package
+#
+ament_package()
 
