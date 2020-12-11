@@ -15,11 +15,11 @@ q0 = np.matrix(IiwaConfig.q0)
 v0 = np.matrix(IiwaConfig.v0)
 robot.reset_state(q0, v0)
 
-# Run the simulator for 100 steps
-for i in range(100):
-    # TODO: Implement a controller here.
-    robot.send_joint_command(tau)
+# # Run the simulator for 100 steps
+# for i in range(100):
+#     # TODO: Implement a controller here.
+#     robot.send_joint_command(tau)
     
-    # Step the simulator.
-    p.stepSimulation()
-    time.sleep(0.1)
+#     # Step the simulator.
+#     p.stepSimulation()
+#     time.sleep(0.1)
