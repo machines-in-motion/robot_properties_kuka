@@ -1,6 +1,6 @@
 import numpy as np 
-from py_robot_properties_iiwa.config import IiwaConfig
-from py_robot_properties_iiwa.robot import IiwaRobot
+from robot_properties_kuka.config import IiwaConfig
+from robot_properties_kuka.IiwaWrapper import IiwaRobot
 
 import pinocchio as pin
 import pybullet as p
@@ -11,10 +11,9 @@ robot = IiwaRobot()
 tau = np.zeros(robot.pin_robot.model.nq)
 
 # Reset the robot to some initial state.
-q0 = np.matrix(IiwaConfig.initial_configuration)
-dq0 = np.matrix(IiwaConfig.initial_velocity)
-print(q0)
-robot.reset_state(q0, dq0)
+q0 = np.matrix(IiwaConfig.q0)
+v0 = np.matrix(IiwaConfig.v0)
+robot.reset_state(q0, v0)
 
 # Run the simulator for 100 steps
 for i in range(100):

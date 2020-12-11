@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<robot name="KUKAiiwa14" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- Import Rviz colors -->
+  <xacro:include filename="materials.xacro" />
+  <!--Import the lbr iiwa macro -->
+  <xacro:include filename="iiwa.xacro"/>
+  
+  <!-- Fix to world just for testing -->
+  <link name="world"/>
+  
+  <!--KUKAiiwa14-->
+  <xacro:KUKAiiwa14 hardware_interface="PositionJointInterface" robot_name="KUKAiiwa14" parent="world">
+  <!-- <xacro:KUKAiiwa14 parent="world"> -->
+    <origin xyz="0 0 0" rpy="0 0 0" />
+  </xacro:KUKAiiwa14>
+  
+</robot>

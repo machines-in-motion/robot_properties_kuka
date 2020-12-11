@@ -9,22 +9,20 @@
 
 import os
 import time
-import rospkg
-
 import numpy as np
 
 import pybullet as p
 import pinocchio as se3
 from pinocchio.utils import zero
 
-import py_robot_properties_iiwa
-from py_robot_properties_iiwa.config import IiwaConfig
+import robot_properties_kuka
+from robot_properties_kuka.config import IiwaConfig
 
 
 physicsClient = p.connect(p.GUI)
 
 # Load the plain.
-plain_urdf = rospkg.RosPack().get_path("robot_properties_iiwa") + "/urdf/plane_with_restitution.urdf"
+plain_urdf = rospkg.RosPack().get_path("robot_properties_kuka") + "/urdf/plane_with_restitution.urdf"
 planeId = p.loadURDF(plain_urdf)
 
 print("Loaded plain.")

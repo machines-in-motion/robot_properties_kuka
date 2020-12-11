@@ -3,7 +3,7 @@
 <!-- Added interias and other properties by hand.                               -->
 <robot name="KUKAiiwa14">
 
-  <link name="iiwaBase">
+  <link name="iiwa14_base">
     <inertial>
       <origin xyz="0.00000 0.00000 0.00000"/>
       <mass value="8.00000"/>
@@ -12,7 +12,7 @@
     <visual>
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />            
       <geometry>
-        <mesh filename="package://robot_properties_iiwa/meshes/iiwa14_base.stl" scale="0.001 0.001 0.001" />
+        <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa14_base.stl" scale="0.001 0.001 0.001" />
       </geometry>
     </visual>    
   </link>
@@ -20,7 +20,7 @@
 
   <joint name="A1" type="revolute">
     <origin xyz="0.00000 0.00000 0.15750" rpy="0.0 0.0 0.0"/>
-    <parent link="iiwaBase"/>
+    <parent link="iiwa14_base"/>
     <child  link="L1"/>
     <limit effort="30" velocity="1.0"/>
     <axis xyz="0 0 1"/>
@@ -36,7 +36,7 @@
     <visual>
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <geometry>
-	      <mesh filename="package://robot_properties_iiwa/meshes/iiwa14_link1.stl" scale="0.001 0.001 0.001" />
+	      <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa14_link1.stl" scale="0.001 0.001 0.001" />
       </geometry>
     </visual>
   </link>  
@@ -60,7 +60,7 @@
     <visual>
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <geometry>
-	      <mesh filename="package://robot_properties_iiwa/meshes/iiwa14_link2.stl" scale="0.001 0.001 0.001" />
+	      <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa14_link2.stl" scale="0.001 0.001 0.001" />
       </geometry>
     </visual>
   </link>
@@ -84,7 +84,7 @@
     <visual>
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <geometry>
-	      <mesh filename="package://robot_properties_iiwa/meshes/iiwa14_link3.stl" scale="0.001 0.001 0.001" />
+	      <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa14_link3.stl" scale="0.001 0.001 0.001" />
       </geometry>
     </visual>  
   </link>
@@ -108,7 +108,7 @@
     <visual>
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <geometry>
-	      <mesh filename="package://robot_properties_iiwa/meshes/iiwa14_link4.stl" scale="0.001 0.001 0.001" />
+	      <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa14_link4.stl" scale="0.001 0.001 0.001" />
       </geometry>
     </visual>
   </link>
@@ -132,7 +132,7 @@
     <visual>
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <geometry>
-	      <mesh filename="package://robot_properties_iiwa/meshes/iiwa14_link5.stl" scale="0.001 0.001 0.001" />
+	      <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa14_link5.stl" scale="0.001 0.001 0.001" />
       </geometry>
     </visual>
   </link>
@@ -156,7 +156,7 @@
     <visual>
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <geometry>
-	      <mesh filename="package://robot_properties_iiwa/meshes/iiwa14_link6.stl" scale="0.001 0.001 0.001" />
+	      <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa14_link6.stl" scale="0.001 0.001 0.001" />
       </geometry>
     </visual>
   </link>
@@ -181,7 +181,7 @@
     <visual>      
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
       <geometry>
-	      <mesh filename="package://robot_properties_iiwa/meshes/iiwa14_link7.stl" scale="0.001 0.001 0.001" />
+	      <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa14_link7.stl" scale="0.001 0.001 0.001" />
       </geometry>
     </visual>
   </link>
@@ -212,7 +212,7 @@
       <geometry>
         <!-- Using unit sphere and rescale to 6.5 cm diameter of tennis ball. -->
         <!-- TODO(skleff): Figure out if the scaling is correct to give us a 6.5 cm sphere. -->
-        <mesh filename="package://robot_properties_iiwa/meshes/sphere.obj" scale="0.065 0.065 0.065"/>/>
+        <mesh filename="package://robot_properties_kuka/meshes/sphere.obj" scale="0.065 0.065 0.065"/>/>
       </geometry>
       <material name="grey">
         <color rgba="0.8 0.8 0.8 1.0"/>
@@ -222,7 +222,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://robot_properties_iiwa/meshes/sphere.obj" scale="0.065 0.065 0.065"/>/>
+        <mesh filename="package://robot_properties_kuka/meshes/sphere.obj" scale="0.065 0.065 0.065"/>/>
       </geometry>
       <material name="grey">
         <color rgba="0.8 0.8 0.8 1.0"/>
