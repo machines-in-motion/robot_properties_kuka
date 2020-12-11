@@ -27,12 +27,12 @@ def with_gepetto_gui_helper():
     # place the world frame
     world_frame = Frame(gepetto_gui_scene)
 
-    # Example of moving the robot forward and updating the display every time.
-    q = config.q0.copy()
-    for i in range(10):
-        q[0] += 0.05
-        iiwa_visual.display(q)
-        time.sleep(0.2)
+    # # Example of moving the robot forward and updating the display every time.
+    # q = config.q0.copy()
+    # for i in range(10):
+    #     q[0] += 0.05
+    #     iiwa_visual.display(q)
+    #     time.sleep(0.2)
 
 
 def with_pinocchio_wrapper():
@@ -55,11 +55,11 @@ def with_pinocchio_wrapper():
     # Display the configuration in the viewer.
     robot.display(q)
 
-    # Example of moving the robot forward and updating the display every time.
-    for i in range(10):
-        q[0] += 0.05
-        robot.display(q)
-        time.sleep(0.2)
+    # # Example of moving the robot forward and updating the display every time.
+    # for i in range(10):
+    #     q[0] += 0.05
+    #     robot.display(q)
+    #     time.sleep(0.2)
 
 
 if __name__ == "__main__":

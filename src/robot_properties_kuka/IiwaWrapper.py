@@ -27,21 +27,9 @@ class IiwaRobot(PinBulletWrapper):
             flags=pybullet.URDF_USE_INERTIA_FROM_FILE,
             useFixedBase=True,
         )
-        # pybullet.getBasePositionAndOrientation(self.robotId)
-
-
 
         # Create the robot wrapper in pinocchio.
         self.pin_robot = IiwaConfig.buildRobotWrapper()
-
-        # # Load the plain.
-        # plain_urdf = (rospkg.RosPack().get_path("robot_properties_iiwa") +
-        #               "/urdf/plane_with_restitution.urdf")
-        # self.planeId = p.loadURDF(plain_urdf)
-
-        # # Create the robot wrapper in pinocchio.
-        # package_dirs = [os.path.dirname(os.path.dirname(self.urdf_path)) + '/urdf']
-        # self.pin_robot, self.collision_model, self.visual_model = IiwaConfig.buildRobotWrapper() #
 
         # Query all the joints.
         num_joints = pybullet.getNumJoints(self.robotId)
@@ -56,15 +44,20 @@ class IiwaRobot(PinBulletWrapper):
 
         self.base_link_name = "base_link"
         self.end_eff_ids = []
-        controlled_joints = ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7']
+        controlled_joints = ["A1", "A2", "A3", "A4", "A5", "A6", "A7"]
+        self.end_eff_ids.append(self.pin_robot.model.getFrameId('contact'))
         self.joint_names = controlled_joints
+
+        print(self.joint_names)
+        print(self.end_eff_ids)
 
         # Creates the wrapper by calling the super.__init__.
         super(IiwaRobot, self).__init__(
             self.robotId, 
             self.pin_robot,
             controlled_joints,
-            ['END'])
+            ['EE'],
+            useFixedBase=True)
             
     @staticmethod
     def initPhysicsClient(with_gui=True):
