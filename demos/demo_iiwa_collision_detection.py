@@ -34,13 +34,13 @@ if __name__ == "__main__":
 
     #  Find the absolute path to the srdf file
     srdf_path = find_paths("iiwa")['srdf']
-
+    
     #  Disable collision pairs specified in the srdf
     pin.removeCollisionPairs(robot.model, robot.collision_model, srdf_path)
 
     #  Read the reference configurations defined in the srdf
     pin.loadReferenceConfigurations(robot.model, srdf_path)
-    q = robot.model.referenceConfigurations["straight_standing"]
+    q = robot.model.referenceConfigurations["home"]
 
     #  Display the configuration in the viewer.
     robot.display(q)
@@ -64,8 +64,8 @@ if __name__ == "__main__":
     print("## First configuration valid: ", valid)
 
     #  Move to a configuration in self collision
-    q[9] = 1
-    q[15] = -2
+    q[1] = 2
+    # q[15] = -2
     robot.display(q)
 
     #  Compute all the collisions
