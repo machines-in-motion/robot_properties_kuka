@@ -24,7 +24,7 @@ class IiwaRobot(PinBulletWrapper):
             self.urdf_path,
             pos, orn,
             flags=pybullet.URDF_USE_INERTIA_FROM_FILE,
-            useFixedBase=False)
+            useFixedBase=True)
 
         # Create the robot wrapper in pinocchio.
         self.pin_robot = IiwaConfig.buildRobotWrapper()

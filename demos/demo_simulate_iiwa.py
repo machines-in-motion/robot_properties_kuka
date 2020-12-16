@@ -36,7 +36,7 @@ if __name__ == "__main__":
 
         # Step the simulator.
         env.step(sleep=True) # You can sleep here if you want to slow down the replay
-        time.sleep(.5)
+        # time.sleep(.5)
     # Read the final state and forces after the stepping.
     q, dq = robot.get_state()
     active_eff, forces = robot.get_force()
