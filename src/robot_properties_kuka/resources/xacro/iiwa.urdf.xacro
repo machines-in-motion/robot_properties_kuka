@@ -6,7 +6,7 @@
   <xacro:include filename="iiwa.xacro"/>
   
   <!-- Fix to world just for testing -->
-  <link name="world"/>
+  <!-- <link name="world"/> -->
   
   <!--KUKAiiwa14-->
   <xacro:KUKAiiwa14 hardware_interface="PositionJointInterface" robot_name="KUKAiiwa14" parent="world">

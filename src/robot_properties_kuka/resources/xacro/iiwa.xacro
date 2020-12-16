@@ -2,11 +2,11 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
   
   <!-- Import all Gazebo-customization elements, including Gazebo colors -->
-  <xacro:include filename="iiwa.gazebo.xacro" />
+  <!-- <xacro:include filename="iiwa.gazebo.xacro" /> -->
   <!-- Import Transmissions -->
-  <xacro:include filename="iiwa.transmission.xacro" />
+  <!-- <xacro:include filename="iiwa.transmission.xacro" /> -->
   <!-- Include Utilities -->
-  <xacro:include filename="utilities.xacro" />
+  <!-- <xacro:include filename="utilities.xacro" /> -->
   
   <!-- some constants -->
   <xacro:property name="safety_controller_k_pos" value="100" />
@@ -15,19 +15,18 @@
   
   <xacro:macro name="KUKAiiwa14" params="parent hardware_interface robot_name *origin">
     
-
-    <!--joint between {parent} and base-->
-    <joint name="${parent}_joint" type="fixed">
+    <!--joint between WORLD and BASE-->
+    <!-- <joint name="A0" type="fixed">
       <xacro:insert_block name="origin"/>
-      <parent link="${parent}"/>
+      <parent link="world"/>
       <child link="iiwa_base"/>
     </joint>
-    
+     -->
 
     <!-- BASE -->
     <link name="iiwa_base">
       <inertial>
-        <origin xyz="-0.1 0 0.07" rpy="0 0 0"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
         <mass value="5"/>
         <inertia ixx="0.05"  ixy="0"  ixz="0" iyy="0.06" iyz="0" izz="0.03" />
       </inertial>
@@ -35,7 +34,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://meshes/stl/iiwa_base.stl"/>
+          <mesh filename="package://meshes/stl/iiwa_base.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Grey"/>
       </visual>
@@ -43,7 +42,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://meshes/stl/iiwa_base.stl"/>
+          <mesh filename="package://meshes/stl/iiwa_base.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Grey"/>
       </collision>
@@ -75,15 +74,15 @@
     <!-- LINK 1-->
     <link name="L1">
       <inertial>
-        <origin xyz="0 -0.03 0.12" rpy="0 0 0"/>
-        <mass value="4"/>
-        <inertia ixx="0.1"  ixy="0"  ixz="0" iyy="0.09" iyz="0" izz="0.02" />
+        <origin xyz="0.00000 0.00000 0.00000"/>
+        <mass value="3.94781"/>
+        <inertia ixx="0.00455" iyy="0.00454" izz="0.00029" ixy="0.00000" ixz="-0.00000" iyz="-0.00001"/>
       </inertial>
       
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://meshes/stl/iiwa_link_1.stl"/>
+          <mesh filename="package://meshes/stl/iiwa_link_1.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Orange"/>
       </visual>
@@ -91,7 +90,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://meshes/stl/iiwa_link_1.stl"/>
+          <mesh filename="package://meshes/stl/iiwa_link_1.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Orange"/>
       </collision>
@@ -124,7 +123,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://meshes/stl/iiwa_link_2.stl"/>
+          <mesh filename="package://meshes/stl/iiwa_link_2.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Orange"/>
       </visual>
@@ -132,7 +131,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://meshes/stl/iiwa_link_2.stl"/>
+          <mesh filename="package://meshes/stl/iiwa_link_2.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Orange"/>
       </collision>
@@ -165,7 +164,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://meshes/stl/iiwa_link_3.stl"/>
+          <mesh filename="package://meshes/stl/iiwa_link_3.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Orange"/>
       </visual>
@@ -173,7 +172,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://meshes/stl/iiwa_link_3.stl"/>
+          <mesh filename="package://meshes/stl/iiwa_link_3.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Orange"/>
       </collision>
@@ -206,7 +205,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://meshes/stl/iiwa_link_4.stl"/>
+          <mesh filename="package://meshes/stl/iiwa_link_4.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Orange"/>
       </visual>
@@ -214,7 +213,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://meshes/stl/iiwa_link_4.stl"/>
+          <mesh filename="package://meshes/stl/iiwa_link_4.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Orange"/>
       </collision>
@@ -247,7 +246,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://meshes/stl/iiwa_link_5.stl"/>
+          <mesh filename="package://meshes/stl/iiwa_link_5.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Orange"/>
       </visual>
@@ -255,7 +254,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://meshes/stl/iiwa_link_5.stl"/>
+          <mesh filename="package://meshes/stl/iiwa_link_5.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Orange"/>
       </collision>
@@ -288,7 +287,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://meshes/stl/iiwa_link_6.stl"/>
+          <mesh filename="package://meshes/stl/iiwa_link_6.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Orange"/>
       </visual>
@@ -296,7 +295,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://meshes/stl/iiwa_link_6.stl"/>
+          <mesh filename="package://meshes/stl/iiwa_link_6.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Orange"/>
       </collision>
@@ -329,7 +328,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://meshes/stl/iiwa_link_7.stl"/>
+          <mesh filename="package://meshes/stl/iiwa_link_7.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Grey"/>
       </visual>
@@ -337,7 +336,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://meshes/stl/iiwa_link_7.stl"/>
+          <mesh filename="package://meshes/stl/iiwa_link_7.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Grey"/>
       </collision>
@@ -394,8 +393,8 @@
     
 
     <!--Extensions -->
-    <xacro:iiwa_gazebo robot_name="KUKAiiwa14" />
-    <xacro:iiwa_transmission hardware_interface="${hardware_interface}"/>
+    <!-- <xacro:iiwa_gazebo robot_name="KUKAiiwa14" /> -->
+    <!-- <xacro:iiwa_transmission hardware_interface="${hardware_interface}"/> -->
     
   </xacro:macro>
   

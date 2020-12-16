@@ -16,10 +16,9 @@ class KukaAbstract(object):
         # Rebuild the robot wrapper instead of using the existing model to
         # also load the visuals.
         robot = RobotWrapper.BuildFromURDF(
-            cls.urdf_path, cls.meshes_path, se3.JointModelFreeFlyer()
-        )
-        robot.model.rotorInertia[6:] = cls.motor_inertia
-        robot.model.rotorGearRatio[6:] = cls.motor_gear_ration
+            cls.urdf_path, cls.meshes_path)
+        robot.model.rotorInertia[:] = cls.motor_inertia
+        robot.model.rotorGearRatio[:] = cls.motor_gear_ration
         return robot
 
     def joint_name_in_single_string(self):
@@ -30,6 +29,9 @@ class KukaAbstract(object):
 
 
 class IiwaConfig(KukaAbstract):
+    '''
+    Config class for the KUKA LWR iiwa
+    '''
     robot_family = "kuka"   
     robot_name = "iiwa"
 
@@ -44,9 +46,9 @@ class IiwaConfig(KukaAbstract):
     motor_gear_ration = 9.0
     
     # Pinocchio model.
-    robot_model = se3.buildModelFromUrdf(urdf_path, se3.JointModelFreeFlyer())
-    robot_model.rotorInertia[6:] = motor_inertia
-    robot_model.rotorGearRatio[6:] = motor_gear_ration
+    robot_model = se3.buildModelFromUrdf(urdf_path)
+    robot_model.rotorInertia[:] = motor_inertia
+    robot_model.rotorGearRatio[:] = motor_gear_ration
 
     mass = np.sum([i.mass for i in robot_model.inertias])
 
@@ -54,20 +56,18 @@ class IiwaConfig(KukaAbstract):
 
     # The number of motors, here they are the same as there are only revolute
     # joints.
-    nb_joints = robot_model.nq
+    nb_joints = robot_model.nv
 
-    joint_names = [
-        "A1",
-        "A2",
-        "A3",
-        "A4",
-        "A5",
-        "A6",
-        "A7",
-    ]
+    joint_names = [ "A1",
+                    "A2",
+                    "A3",
+                    "A4",
+                    "A5",
+                    "A6",
+                    "A7" ]
 
     # Mapping between the ctrl vector in the device and the urdf indexes.
-    urdf_to_dgm = tuple(range(7))
+    urdf_to_dgm = tuple(range(robot_model.nv))
 
     map_joint_name_to_id = {}
     map_joint_limits = {}
@@ -82,48 +82,73 @@ class IiwaConfig(KukaAbstract):
         map_joint_limits[i] = [float(lb), float(ub)]
 
     # Define the initial state.
-    initial_configuration = [0.]*7
-    initial_velocity = [0.]*7
+    initial_configuration = [0.]*robot_model.nq
+    initial_velocity = [0.]*robot_model.nv
 
     q0 = zero(robot_model.nq)
-    # q0[:] = initial_configuration
+    q0[:] = initial_configuration
     v0 = zero(robot_model.nv)
     a0 = zero(robot_model.nv)
 
 
 # class Lwr4Config(KukaAbstract):
+#     '''
+#     Config class for the KUKA LWR 4
+#     '''
+#     robot_family = "kuka"   
 #     robot_name = "lwr4"
 
-#     @classmethod
-#     def buildRobotWrapper(cls):
-#         # Rebuild the robot wrapper instead of using the existing model to
-#         # also load the visuals.
-#         robot_model, collision_model, visual_model = se3.buildModelsFromUrdf(cls.urdf_path, cls.meshes_path)
-#         return RobotWrapper(robot_model), collision_model, visual_model
-        
-#     # Here we use the same urdf as for the quadruped but without the freeflyer.
-#     urdf_path = (
-#         join(rospkg.RosPack().get_path("robot_properties_" + robot_name),
-#              "urdf",
-#              robot_name + ".urdf")
-#     )
+#     paths = find_paths(robot_name)
+#     meshes_path = paths["resources"]
+#     yaml_path = paths["dgm_yaml"]
+#     urdf_path = paths["urdf"]
 
-#     meshes_path = [
-#       dirname(rospkg.RosPack().get_path("robot_properties_" + robot_name))
-#     ]
+#     # The inertia of a single blmc_motor.
+#     motor_inertia = 0.0000045
+#     # The motor gear ratio.
+#     motor_gear_ration = 9.0
+    
+#     # Pinocchio model.
+#     robot_model = se3.buildModelFromUrdf(urdf_path)
+#     robot_model.rotorInertia[:] = motor_inertia
+#     robot_model.rotorGearRatio[:] = motor_gear_ration
 
-#     yaml_path = (
-#         join(rospkg.RosPack().get_path("robot_properties_" + robot_name),
-#              "config",
-#              "iiwa.yaml")
-#     )
-
-#     # pinocchio model.
-#     robot_model = se3.buildModelFromUrdf(urdf_path,
-#                                          se3.JointModelFreeFlyer())
+#     mass = np.sum([i.mass for i in robot_model.inertias])
 
 #     base_name = robot_model.frames[2].name
 
-#     # Define the initial configuration (pos and vel?)
-#     initial_configuration = se3.utils.zero(robot_model.nq) 
-#     initial_velocity = se3.utils.zero(robot_model.nv) 
+#     # The number of motors, here they are the same as there are only revolute
+#     # joints.
+#     nb_joints = robot_model.nv
+
+#     joint_names = [ "A1",
+#                     "A2",
+#                     "A3",
+#                     "A4",
+#                     "A5",
+#                     "A6",
+#                     "A7" ]
+
+#     # Mapping between the ctrl vector in the device and the urdf indexes.
+#     urdf_to_dgm = tuple(range(robot_model.nv))
+
+#     map_joint_name_to_id = {}
+#     map_joint_limits = {}
+#     for i, (name, lb, ub) in enumerate(
+#         zip(
+#             robot_model.names[1:],
+#             robot_model.lowerPositionLimit,
+#             robot_model.upperPositionLimit,
+#         )
+#     ):
+#         map_joint_name_to_id[name] = i
+#         map_joint_limits[i] = [float(lb), float(ub)]
+
+#     # Define the initial state.
+#     initial_configuration = [0.]*robot_model.nq
+#     initial_velocity = [0.]*robot_model.nv
+
+#     q0 = zero(robot_model.nq)
+#     q0[:] = initial_configuration
+#     v0 = zero(robot_model.nv)
+#     a0 = zero(robot_model.nv)

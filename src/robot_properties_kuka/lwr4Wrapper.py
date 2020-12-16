@@ -3,13 +3,15 @@ import time
 import os
 import pybullet 
 from py_pinocchio_bullet.wrapper import PinBulletWrapper
-from robot_properties_kuka.config import IiwaConfig
+from robot_properties_kuka.config import Lwr4Config
 
 dt = 1e-3
 
-class IiwaRobot(PinBulletWrapper):
-
-    def __init__(self, pos=None, orn=None, with_gui=True, physicsClient=None):
+class Lwr4Robot(PinBulletWrapper):
+    '''
+    Pinocchio-PyBullet wrapper class for the KUKA LWR 4
+    '''
+    def __init__(self, pos=None, orn=None): 
 
         # Load the robot
         if pos is None:
@@ -17,18 +19,15 @@ class IiwaRobot(PinBulletWrapper):
         if orn is None:
             orn = pybullet.getQuaternionFromEuler([0, 0, 0])
 
-        if physicsClient is None:
-            self.physicsClient = self.initPhysicsClient(with_gui)
-
-        self.urdf_path = IiwaConfig.urdf_path
+        self.urdf_path = Lwr4Config.urdf_path
         self.robotId = pybullet.loadURDF(
             self.urdf_path,
             pos, orn,
             flags=pybullet.URDF_USE_INERTIA_FROM_FILE,
-            useFixedBase=True)
+            useFixedBase=False)
 
         # Create the robot wrapper in pinocchio.
-        self.pin_robot = IiwaConfig.buildRobotWrapper()
+        self.pin_robot = Lwr4Config.buildRobotWrapper()
 
         # Query all the joints.
         num_joints = pybullet.getNumJoints(self.robotId)
@@ -41,33 +40,21 @@ class IiwaRobot(PinBulletWrapper):
                                     restitution=0.0, 
                                     lateralFriction=0.5)
 
-        self.base_link_name = "base_link"
+        self.base_link_name = "iiwa_base"
         self.end_eff_ids = []
         controlled_joints = ["A1", "A2", "A3", "A4", "A5", "A6", "A7"]
         self.end_eff_ids.append(self.pin_robot.model.getFrameId('contact'))
         self.joint_names = controlled_joints
 
-        print(self.joint_names)
-        print(self.end_eff_ids)
-
         # Creates the wrapper by calling the super.__init__.
-        super(IiwaRobot, self).__init__(
+        super(Lwr4Robot, self).__init__(
             self.robotId, 
             self.pin_robot,
             controlled_joints,
             ['EE'],
             useFixedBase=True)
-            
-    @staticmethod
-    def initPhysicsClient(with_gui=True):
-        if with_gui:
-            physicsClient = pybullet.connect(pybullet.GUI)
-        else:
-            physicsClient = pybullet.connect(pybullet.DIRECT)
-        pybullet.setGravity(0,0, -9.81)
-        pybullet.setPhysicsEngineParameter(fixedTimeStep=dt, numSubSteps=1)
-        return physicsClient
-
+        self.nb_dof = self.nv
+        
     def forward_robot(self, q=None, dq=None):
         if not q:
             q, dq = self.get_state()
