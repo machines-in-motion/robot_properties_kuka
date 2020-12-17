@@ -2,11 +2,9 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
   
   <!-- Import all Gazebo-customization elements, including Gazebo colors -->
-  <!-- <xacro:include filename="iiwa.gazebo.xacro" /> -->
+  <xacro:include filename="iiwa.gazebo.xacro" />
   <!-- Import Transmissions -->
-  <!-- <xacro:include filename="iiwa.transmission.xacro" /> -->
-  <!-- Include Utilities -->
-  <!-- <xacro:include filename="utilities.xacro" /> -->
+  <xacro:include filename="iiwa.transmission.xacro" />
   
   <!-- some constants -->
   <xacro:property name="safety_controller_k_pos" value="100" />
@@ -64,11 +62,11 @@
       <limit effort="30" velocity="1.0"/>
       <axis xyz="0 0 1"/>
       <limit lower="-2.96706" upper="2.96706" velocity="1.48353" effort="320"/>
-      <!-- <safety_controller soft_lower_limit="${-168 * PI / 180}"
+      <safety_controller soft_lower_limit="${-168 * PI / 180}"
                           soft_upper_limit="${168 * PI / 180}"
                           k_position="${safety_controller_k_pos}"
                           k_velocity="${safety_controller_k_vel}"/> 
-      <dynamics damping="${joint_damping}"/> -->
+      <dynamics damping="${joint_damping}"/>
     </joint>
     
 
@@ -105,11 +103,11 @@
       <child  link="L2"/>
       <axis xyz="0 0 1"/>
       <limit lower="-2.0944" upper="2.0944" velocity="1.48353" effort="320"/>
-      <!-- <safety_controller soft_lower_limit="${-118 * PI / 180}"
+      <safety_controller soft_lower_limit="${-118 * PI / 180}"
                           soft_upper_limit="${118 * PI / 180}"
                           k_position="${safety_controller_k_pos}"
                           k_velocity="${safety_controller_k_vel}"/> 
-      <dynamics damping="${joint_damping}"/> -->
+      <dynamics damping="${joint_damping}"/>
     </joint>
 
 
@@ -146,11 +144,11 @@
       <child  link="L3"/>
       <axis xyz="0 0 1"/>
       <limit lower="-2.96706" upper="2.96706" velocity="1.74533" effort="176"/>
-      <!-- <safety_controller soft_lower_limit="${-168 * PI / 180}"
+      <safety_controller soft_lower_limit="${-168 * PI / 180}"
                           soft_upper_limit="${168 * PI / 180}"
                           k_position="${safety_controller_k_pos}"
                           k_velocity="${safety_controller_k_vel}"/> 
-      <dynamics damping="${joint_damping}"/> -->
+      <dynamics damping="${joint_damping}"/>
     </joint>
     
 
@@ -187,11 +185,11 @@
       <child  link="L4"/>
       <axis xyz="0 0 1"/>
       <limit lower="-2.0944" upper="2.0944" velocity="1.309" effort="176"/>
-      <!-- <safety_controller soft_lower_limit="${-118 * PI / 180}"
+      <safety_controller soft_lower_limit="${-118 * PI / 180}"
                           soft_upper_limit="${118 * PI / 180}"
                           k_position="${safety_controller_k_pos}"
                           k_velocity="${safety_controller_k_vel}"/> 
-      <dynamics damping="${joint_damping}"/> -->
+      <dynamics damping="${joint_damping}"/>
     </joint>
 
 
@@ -228,11 +226,11 @@
       <child  link="L5"/>
       <axis xyz="0 0 1"/>
       <limit lower="-2.96706" upper="2.96706" velocity="2.26893" effort="110"/>
-      <!-- <safety_controller soft_lower_limit="${-168 * PI / 180}"
+      <safety_controller soft_lower_limit="${-168 * PI / 180}"
                           soft_upper_limit="${168 * PI / 180}"
                           k_position="${safety_controller_k_pos}"
                           k_velocity="${safety_controller_k_vel}"/> 
-      <dynamics damping="${joint_damping}"/> -->
+      <dynamics damping="${joint_damping}"/>
     </joint>
 
 
@@ -269,11 +267,11 @@
       <child  link="L6"/>
       <axis xyz="0 0 1"/>
       <limit lower="-2.0944" upper="2.0944" velocity="2.35619" effort="40"/>
-      <!-- <safety_controller soft_lower_limit="${-118 * PI / 180}"
+      <safety_controller soft_lower_limit="${-118 * PI / 180}"
                           soft_upper_limit="${118 * PI / 180}"
                           k_position="${safety_controller_k_pos}"
                           k_velocity="${safety_controller_k_vel}"/> 
-      <dynamics damping="${joint_damping}"/> -->
+      <dynamics damping="${joint_damping}"/>
     </joint>
       
 
@@ -310,11 +308,11 @@
       <child  link="L7"/>
       <axis xyz="0 0 1"/>
       <limit lower="-3.05433" upper="3.05433" velocity="2.35619" effort="40" />
-      <!-- <safety_controller soft_lower_limit="${-173 * PI / 180}"
+      <safety_controller soft_lower_limit="${-173 * PI / 180}"
                           soft_upper_limit="${173 * PI / 180}"
                           k_position="${safety_controller_k_pos}"
                           k_velocity="${safety_controller_k_vel}"/> 
-      <dynamics damping="${joint_damping}"/> -->
+      <dynamics damping="${joint_damping}"/>
     </joint>
     
 
@@ -394,8 +392,8 @@
     
 
     <!--Extensions -->
-    <!-- <xacro:iiwa_gazebo robot_name="KUKAiiwa14" /> -->
-    <!-- <xacro:iiwa_transmission hardware_interface="${hardware_interface}"/> -->
+    <xacro:iiwa_gazebo robot_name="KUKAiiwa14"/>
+    <xacro:iiwa_transmission hardware_interface="${hardware_interface}"/>
     
   </xacro:macro>
   

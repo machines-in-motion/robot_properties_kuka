@@ -9,9 +9,7 @@
   <link name="world"/>
   
   <!--KUKAiiwa14-->
-  <xacro:KUKAiiwa14 robot_name="KUKAiiwa14">
-  <!-- <xacro:KUKAiiwa14 hardware_interface="PositionJointInterface" robot_name="KUKAiiwa14" parent="world"> -->
-  <!-- <xacro:KUKAiiwa14 parent="world"> -->
+  <xacro:KUKAiiwa14 robot_name="KUKAiiwa14" hardware_interface="PositionJointInterface">
     <origin xyz="0 0 0" rpy="0 0 0" />
   </xacro:KUKAiiwa14>
 </robot>
