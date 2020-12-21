@@ -64,5 +64,5 @@ def with_pinocchio_wrapper():
 
 if __name__ == "__main__":
 
-    # with_pinocchio_wrapper()
-    with_gepetto_gui_helper()
+    with_pinocchio_wrapper()
+    # with_gepetto_gui_helper()
