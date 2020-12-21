@@ -7,7 +7,7 @@ URDF and ROS integration of KUKA robots (iiwa and lwr4)
 
 ### Warning
 
-This branch is currently deprecated. It is recommended to use the branch skleff/code_sprint_2020 in the meantime.
+The master branch is currently deprecated. It is recommended to use the branch skleff/code_sprint_2020 in the meantime.
 
 ### Authors
 
