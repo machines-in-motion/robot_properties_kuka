@@ -1,3 +1,13 @@
+"""config
+
+Store the configuration of the Kuka family robots.
+
+License: BSD 3-Clause License
+Copyright (C) 2018-2019, New York University , Max Planck Gesellschaft
+Copyright note valid unless otherwise stated in individual files.
+All rights reserved.
+"""
+
 import numpy as np
 from math import pi
 import rospkg

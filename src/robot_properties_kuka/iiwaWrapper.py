@@ -1,11 +1,23 @@
+"""iiwawrapper
+
+Solo8 pybullet interface using pinocchio's convention.
+
+License: BSD 3-Clause License
+Copyright (C) 2018-2019, New York University , Max Planck Gesellschaft
+Copyright note valid unless otherwise stated in individual files.
+All rights reserved.
+"""
+
 import numpy as np
 import time
 import os
 import pybullet 
 from py_pinocchio_bullet.wrapper import PinBulletWrapper
 from robot_properties_kuka.config import IiwaConfig
+from robot_properties_kuka.utils import find_paths
 
 dt = 1e-3
+
 
 class IiwaRobot(PinBulletWrapper):
     '''
@@ -19,6 +31,7 @@ class IiwaRobot(PinBulletWrapper):
         if orn is None:
             orn = pybullet.getQuaternionFromEuler([0, 0, 0])
 
+        pybullet.setAdditionalSearchPath(IiwaConfig.paths["package"])
         self.urdf_path = IiwaConfig.urdf_path
         self.robotId = pybullet.loadURDF(
             self.urdf_path,
