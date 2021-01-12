@@ -31,14 +31,15 @@ class IiwaRobot(PinBulletWrapper):
         if orn is None:
             orn = pybullet.getQuaternionFromEuler([0, 0, 0])
 
-        pybullet.setAdditionalSearchPath(IiwaConfig.paths["package"])
+        pybullet.setAdditionalSearchPath(IiwaConfig.meshes_path)
         self.urdf_path = IiwaConfig.urdf_path
         self.robotId = pybullet.loadURDF(
             self.urdf_path,
             pos, orn,
             flags=pybullet.URDF_USE_INERTIA_FROM_FILE,
             useFixedBase=True)
-
+        pybullet.getBasePositionAndOrientation(self.robotId)
+        
         # Create the robot wrapper in pinocchio.
         self.pin_robot = IiwaConfig.buildRobotWrapper()
 
