@@ -32,7 +32,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_base.stl" />
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_base.dae" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Grey"/>
       </visual>
@@ -40,7 +40,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_base.stl" />
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_base.dae" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Grey"/>
       </collision>
@@ -81,7 +81,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_1.stl" />
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_1.dae" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Orange"/>
       </visual>
@@ -89,7 +89,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_1.stl" />
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_1.dae" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Orange"/>
       </collision>
@@ -122,7 +122,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_2.stl" />
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_2.dae" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Orange"/>
       </visual>
@@ -130,7 +130,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_2.stl" />
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_2.dae" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Orange"/>
       </collision>
@@ -163,7 +163,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_3.stl" />
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_3.dae" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Orange"/>
       </visual>
@@ -171,7 +171,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_3.stl" />
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_3.dae" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Orange"/>
       </collision>
@@ -204,7 +204,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_4.stl" />
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_4.dae" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Orange"/>
       </visual>
@@ -212,7 +212,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_4.stl" />
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_4.dae" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Orange"/>
       </collision>
@@ -245,7 +245,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_5.stl" />
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_5.dae" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Orange"/>
       </visual>
@@ -253,7 +253,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_5.stl" />
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_5.dae" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Orange"/>
       </collision>
@@ -286,7 +286,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_6.stl" />
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_6.dae" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Orange"/>
       </visual>
@@ -294,7 +294,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_6.stl" />
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_6.dae" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Orange"/>
       </collision>
@@ -327,7 +327,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_7.stl" />
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_7.dae" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Grey"/>
       </visual>
@@ -335,7 +335,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_7.stl" />
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_7.dae" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="Grey"/>
       </collision>

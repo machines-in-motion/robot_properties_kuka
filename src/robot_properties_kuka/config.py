@@ -27,8 +27,6 @@ class KukaAbstract(object):
         # also load the visuals.
         robot = RobotWrapper.BuildFromURDF(
             cls.urdf_path, cls.meshes_path)
-        print("urdf path : ", cls.urdf_path)
-        print("meshes path : ", cls.meshes_path)
         robot.model.rotorInertia[:] = cls.motor_inertia
         robot.model.rotorGearRatio[:] = cls.motor_gear_ration
         return robot
