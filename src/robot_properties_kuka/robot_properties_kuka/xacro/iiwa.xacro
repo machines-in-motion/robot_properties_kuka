@@ -366,7 +366,7 @@
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://robot_properties_kuka/meshes/tennis_ball.obj" />
+          <mesh filename="package://robot_properties_kuka/meshes/tennis_ball_smaller.obj" />
         </geometry>
         <material name="grey">
           <color rgba="0.8 0.8 0.8 1.0"/>
@@ -376,7 +376,7 @@
       <collision>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://robot_properties_kuka/meshes/tennis_ball.obj" />
+          <mesh filename="package://robot_properties_kuka/meshes/tennis_ball_smaller.obj" />
         </geometry>
         <material name="grey">
           <color rgba="0.8 0.8 0.8 1.0"/>
