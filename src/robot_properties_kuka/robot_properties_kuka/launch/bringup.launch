@@ -1,0 +1,10 @@
+<launch>
+    <!--Start the executable manage the dynamic graph and the robot control-->
+    <node pkg="dg_kuka" type="dgm_kuka" name="kuka_controller" output="screen"/>
+
+    <!-- Launch the oscilloscope -->
+    <node pkg="rqt_plot" type="rqt_plot" name="kuka_oscilloscope"/>
+
+    <!-- Launch the rqt plugin to start the DG with one click -->
+    <node pkg="rqt_dynamic_graph" type="rqt_dynamic_graph" name="kuka_dynamic_graph_gui"  />
+</launch>
