@@ -70,9 +70,9 @@ class IiwaRobot(PinBulletWrapper):
         self.nb_dof = self.nv
         
     def forward_robot(self, q=None, dq=None):
-        if not q:
+        if q is None:
             q, dq = self.get_state()
-        elif not dq:
+        elif dq is None:
             raise ValueError("Need to provide q and dq or non of them.")
 
         self.pin_robot.forwardKinematics(q, dq)
