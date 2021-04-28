@@ -65,7 +65,7 @@ if __name__ == "__main__":
 
     #  Move to a configuration in self collision
     q[1] = 2
-    # q[15] = -2
+    q[3] = -2.5
     robot.display(q)
 
     #  Compute all the collisions
