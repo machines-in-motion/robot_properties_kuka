@@ -12,16 +12,18 @@ All rights reserved.
 
 import time
 import numpy as np
+import pybullet as p
 from bullet_utils.env import BulletEnvWithGround
 from robot_properties_kuka.iiwaWrapper import IiwaRobot, IiwaConfig
 
 if __name__ == "__main__":
 
     # Create a Pybullet simulation environment
-    env = BulletEnvWithGround()
+    env = BulletEnvWithGround(p.GUI)
 
     # Create a robot instance. This initializes the simulator as well.
-    robot = env.add_robot(IiwaRobot)
+    robot = IiwaRobot()
+    env.add_robot(robot)
     tau = np.zeros(robot.nb_dof)
 
     # Reset the robot to some initial state.
