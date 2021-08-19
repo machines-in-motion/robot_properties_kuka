@@ -2,7 +2,10 @@
 
 import sys
 from os import path, walk
-from setuptools import setup, find_packages
+from shutil import rmtree
+from pathlib import Path
+from setuptools import setup
+from setuptools.command.build_py import build_py
 
 def print_error(*args, **kwargs):
     """ Print in stderr. """
@@ -27,6 +30,7 @@ def find_resources(package_name):
 
 # Package name.
 package_name = "robot_properties_kuka"
+package_version = "1.0.0"
 
 # Long description from the readme.
 with open("readme.md", "r") as fh:
@@ -47,6 +51,93 @@ scripts_list = []
 for (root, _, files) in walk(path.join("demos")):
     for demo_file in files:
         scripts_list.append(path.join(root, demo_file))
+
+class custom_build_py(build_py):
+    def _build_doc(self):
+        """Build the documentation if the mpi_cmake_module is installed."""
+        # Try to build the doc and install it.
+        try:
+            # Get the mpi_cmake_module build doc method
+            from mpi_cmake_modules.documentation_builder import (
+                build_documentation,
+            )
+
+            build_documentation(
+                str((Path(self.build_lib) / package_name / "doc").absolute()),
+                str(Path(__file__).parent.absolute()),
+                package_version,
+            )
+        except ImportError as e:
+            print_error()
+
+    def _build_xacro(self):
+        """ Look for the xacro files and build them in the build folder. """
+        resources_dir = str(
+            Path(__file__).parent.absolute()
+            / "src"
+            / package_name
+            / "resources"
+        )
+        build_folder = str(
+            (
+                Path(self.build_lib) / package_name / "resources" / "urdf"
+            ).absolute()
+        )
+        xacro_files = []
+        for (root, _, files) in walk(str(Path(resources_dir) / "xacro")):
+            for afile in files:
+                if afile.endswith(".urdf.xacro"):
+                    xacro_files.append(str(Path(root) / afile))
+
+        # rebuild all urdfs.
+        rmtree(build_folder, ignore_errors=True)
+        Path(build_folder).mkdir(parents=True, exist_ok=True)
+
+        for xacro_file in xacro_files:
+            for xacro_file in xacro_files:
+                # Generated file name
+                generated_urdf_path = str(
+                    Path(build_folder) / Path(xacro_file).stem
+                )
+                self._build_single_xacro_file(xacro_file, generated_urdf_path)
+
+    def _build_single_xacro_file(self, input_path, output_path):
+        from xacro import process_file, open_output
+        from xacro.xmlutils import xml
+
+        unicode = str
+        encoding = {}
+        print_error(
+            "building xacro file (", input_path, ") into (", output_path, ")"
+        )
+        try:
+            # open and process file
+            doc = process_file(input_path)
+            # open the output file
+            out = open_output(output_path)
+
+        except xml.parsers.expat.ExpatError as e:
+            print_error("XML parsing error: %s" % unicode(e), alt_text=None)
+
+        except Exception as e:
+            msg = unicode(e)
+            if not msg:
+                msg = repr(e)
+            print_error(msg)
+
+        # write output
+        out.write(doc.toprettyxml(indent="  ", **encoding))
+        # only close output file, but not stdout
+        out.close()
+
+    def run(self):
+        """Build the package. """
+        # build documentation.
+        self._build_doc()
+        # build the xacro files into urdf files.
+        self._build_xacro()
+        # distutils uses old-style classes, so no super()
+        build_py.run(self)
 
 # Final setup.
 setup(
@@ -81,4 +172,5 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.6",
+    cmdclass={"build_py": custom_build_py},
 )
