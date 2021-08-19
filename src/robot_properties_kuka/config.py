@@ -76,6 +76,8 @@ class IiwaConfig(KukaAbstract):
                     "A6",
                     "A7" ]
 
+    end_effector_names = ["contact"]
+
     # Mapping between the ctrl vector in the device and the urdf indexes.
     urdf_to_dgm = tuple(range(robot_model.nv))
 
