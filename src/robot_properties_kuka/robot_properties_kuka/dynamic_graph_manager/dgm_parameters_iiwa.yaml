@@ -19,6 +19,7 @@ hardware_communication:
   max_missed_control: 10
   control_period: 1000000 # in nano second
   maximum_time_for_user_cmd: 100000
+  shared_memory_name: "DGM_ShM"
 #debug_timer_history_length: 10000
 host: "192.170.10.1"
 port: 30200
