@@ -114,8 +114,8 @@
     <link name="L2">
       <inertial>
         <origin xyz="0.0003 0.059 0.042" rpy="0 0 0"/>
-        <mass value="4"/>
-        <inertia ixx="0.05"  ixy="0"  ixz="0" iyy="0.018" iyz="0" izz="0.044" />
+        <mass value="4.50275"/>
+        <inertia ixx="0.00032"  ixy="0"  ixz="0" iyy="0.00010" iyz="0" izz="0.00042" />
       </inertial>
       
       <visual>
@@ -155,8 +155,8 @@
     <link name="L3">
       <inertial>
         <origin xyz="0 0.03 0.13" rpy="0 0 0"/>
-        <mass value="3"/>
-        <inertia ixx="0.08"  ixy="0"  ixz="0" iyy="0.075" iyz="0" izz="0.01" />
+        <mass value="2.45520"/>
+        <inertia ixx="0.00223"  ixy="-0.00005"  ixz="0.00007" iyy="0.00219" iyz="0.00007" izz="0.00073" />
       </inertial>
       
       <visual>
@@ -196,8 +196,8 @@
     <link name="L4">
       <inertial>
         <origin xyz="0 0.067 0.034" rpy="0 0 0"/>
-        <mass value="2.7"/>
-        <inertia ixx="0.03"  ixy="0"  ixz="0" iyy="0.01" iyz="0" izz="0.029" />
+        <mass value="2.61155"/>
+        <inertia ixx="0.03844"  ixy="0.00088"  ixz="-0.00112" iyy="0.01144" iyz="-0.00111" izz="0.04988" />
       </inertial>
       
       <visual>
@@ -237,8 +237,8 @@
     <link name="L5">
       <inertial>
         <origin xyz="0.0001 0.021 0.076" rpy="0 0 0"/>
-        <mass value="1.7"/>
-        <inertia ixx="0.02"  ixy="0"  ixz="0" iyy="0.018" iyz="0" izz="0.005" />
+        <mass value="3.41000"/>
+        <inertia ixx="0.00277"  ixy="-0.00001"  ixz="0.00001" iyy="0.00284" iyz="0" izz="0.00012" />
       </inertial>
       
       <visual>
@@ -278,8 +278,8 @@
     <link name="L6">
       <inertial>
         <origin xyz="0 0.0006 0.0004" rpy="0 0 0"/>
-        <mass value="1.8"/>
-        <inertia ixx="0.005"  ixy="0"  ixz="0" iyy="0.0036" iyz="0" izz="0.0047" />
+        <mass value="3.38795"/>
+        <inertia ixx="0.00050"  ixy="-0.00005"  ixz="-0.00003" iyy="0.00281" iyz="-0.00004" izz="0.00232" />
       </inertial>
       
       <visual>
@@ -319,8 +319,8 @@
     <link name="L7">
       <inertial>
         <origin xyz="0 0 0.02" rpy="0 0 0"/>
-        <mass value="0.3"/>
-        <inertia ixx="0.001"  ixy="0"  ixz="0" iyy="0.001" iyz="0" izz="0.001" />
+        <mass value="0.35432"/>
+        <inertia ixx="0.00795"  ixy="0.00022"  ixz="-0.00029" iyy="0.01089" iyz="-0.00029" izz="0.00294" />
       </inertial>
       
       <visual>
