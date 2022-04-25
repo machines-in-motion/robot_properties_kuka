@@ -9,10 +9,6 @@ All rights reserved.
 """
 
 import numpy as np
-from math import pi
-import rospkg
-from os.path import join, dirname
-from os import environ
 import pinocchio as se3
 from pinocchio.utils import zero
 from pinocchio.robot_wrapper import RobotWrapper
