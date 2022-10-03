@@ -28,7 +28,7 @@ class IiwaReducedRobot(PinBulletWrapper):
     '''
     Pinocchio-PyBullet wrapper class for the Iiwa
     '''
-    def __init__(self, controlled_joints, pos=None, orn=None): 
+    def __init__(self, controlled_joints, qref, pos=None, orn=None): 
 
         # Load the robot
         if pos is None:
@@ -74,17 +74,11 @@ class IiwaReducedRobot(PinBulletWrapper):
         # print(locked_joints_ids)
         
         # Build reduced model with ref posture for locked joints
-        qref = pin.neutral(robot_full.model) 
         # Retain locked joints reference position for later
         qref_locked_map = {}
-        if('root_joint' in uncontrolled_joints):
-            qref_locked_map['root_joint'] = qref[0:7]
         for joint_name in uncontrolled_joints:
-            if(joint_name != 'root_joint'):
-                # idx = 6+robot_full.model.getJointId(joint_name)-1
-                idx = robot_full.model.getJointId(joint_name)-1
-                print("map "+str(joint_name) + " (id = "+str(idx) +") : " + str(qref[idx]))
-                qref_locked_map[joint_name] = qref[idx]
+            idx = robot_full.model.getJointId(joint_name)-1
+            qref_locked_map[joint_name] = qref[idx]
         # Make reduced model and wrapper
         reduced_model, [visual_model, collision_model] = pin.buildReducedModel(robot_full.model, 
                                                                                [robot_full.visual_model, robot_full.collision_model], 
@@ -102,15 +96,12 @@ class IiwaReducedRobot(PinBulletWrapper):
         # Get bullet map joint_name<->bullet_index
         bullet_joint_map = {}
         for ji in range(pybullet.getNumJoints(self.robotId)):
-            # print("bullet map joint name = ", pybullet.getJointInfo(self.robotId, ji)[1].decode("UTF-8"))
             bullet_joint_map[pybullet.getJointInfo(self.robotId, ji)[1].decode("UTF-8")] = ji
         # Get bullet ids of locked joints + subconfig
         if('root_joint' in uncontrolled_joints):
             uncontrolled_joints.remove('root_joint') # base treated in sim
         locked_joint_ids_bullet = np.array([bullet_joint_map[name] for name in uncontrolled_joints])
         qref_locked = [qref_locked_map[joint_name] for joint_name in uncontrolled_joints]
-        # print('bullet locked joint ids '+'('+str(len(locked_joint_ids_bullet))+') : ')
-        # print(locked_joint_ids_bullet)
         # Lock the uncontrolled joints in position control in PyBullet multibody (full robot)
         for joint_name in uncontrolled_joints:
             # print("joint name : " + joint_name + " , bullet joint id = ", bullet_joint_map[joint_name])

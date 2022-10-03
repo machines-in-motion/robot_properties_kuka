@@ -105,7 +105,7 @@ class IiwaReducedConfig(IiwaConfig):
     '''
     # Override build_robot_wrapper to generate reduced model
     @classmethod
-    def buildRobotWrapper(cls, controlled_joints):
+    def buildRobotWrapper(cls, controlled_joints, qref):
         # Rebuild the robot wrapper instead of using the existing model to
         # also load the visuals.
         robot_full = RobotWrapper.BuildFromURDF(
@@ -121,7 +121,7 @@ class IiwaReducedConfig(IiwaConfig):
             if(joint_name not in controlled_joints):
                 uncontrolled_joints.append(joint_name)
         locked_joints_ids = [robot_full.model.getJointId(joint_name) for joint_name in uncontrolled_joints]
-        qref = se3.neutral(robot_full.model)
+        # qref = se3.neutral(robot_full.model)
         reduced_model, [visual_model, collision_model] = se3.buildReducedModel(robot_full.model, 
                                                                               [robot_full.visual_model, robot_full.collision_model], 
                                                                               locked_joints_ids, 
