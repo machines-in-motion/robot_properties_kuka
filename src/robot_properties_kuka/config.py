@@ -99,6 +99,38 @@ class IiwaConfig(KukaAbstract):
     a0 = zero(robot_model.nv)
 
 
+class IiwaReducedConfig(IiwaConfig):
+    '''
+    Config class for the iiwa reduced model
+    '''
+    # Override build_robot_wrapper to generate reduced model
+    @classmethod
+    def buildRobotWrapper(cls, controlled_joints):
+        # Rebuild the robot wrapper instead of using the existing model to
+        # also load the visuals.
+        robot_full = RobotWrapper.BuildFromURDF(
+            cls.urdf_path, cls.meshes_path)
+        robot_full.model.rotorInertia[:] = cls.motor_inertia
+        robot_full.model.rotorGearRatio[:] = cls.motor_gear_ration
+        controlled_joints_ids = []
+        for joint_name in controlled_joints:
+            controlled_joints_ids.append(robot_full.model.getJointId(joint_name))
+        # Joint names to lock
+        uncontrolled_joints = [] # 27 = 34 - 6 (controlled) - 1(universe)
+        for joint_name in robot_full.model.names[1:]:
+            if(joint_name not in controlled_joints):
+                uncontrolled_joints.append(joint_name)
+        locked_joints_ids = [robot_full.model.getJointId(joint_name) for joint_name in uncontrolled_joints]
+        qref = se3.neutral(robot_full.model)
+        reduced_model, [visual_model, collision_model] = se3.buildReducedModel(robot_full.model, 
+                                                                              [robot_full.visual_model, robot_full.collision_model], 
+                                                                              locked_joints_ids, 
+                                                                              qref)      
+        robot = se3.robot_wrapper.RobotWrapper(reduced_model, collision_model, visual_model)  
+        return robot
+
+
+
 # class Lwr4Config(KukaAbstract):
 #     '''
 #     Config class for the KUKA LWR 4
