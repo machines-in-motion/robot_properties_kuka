@@ -62,7 +62,7 @@ class IiwaRobot(PinBulletWrapper):
             self.robotId, 
             self.pin_robot,
             controlled_joints,
-            ['EE'],
+            ['ee_to_contact_joint'],
             useFixedBase=True)
         self.nb_dof = self.nv
         
