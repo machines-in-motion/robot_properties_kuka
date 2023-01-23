@@ -386,7 +386,7 @@
       <parent link="assembled_ee"/>
       <child link="contact"/>
       <!-- Joint placement -->
-      <origin rpy="0 0 0" xyz="0 0.1 0"/>
+      <origin rpy="-1.57079632679 0 0" xyz="0 0.1 0"/>
       <!-- Limits (usefull?) -->
       <limit effort="1000" lower="-10" upper="10" velocity="1000"/>
       <!-- pybullet simulation parameters -->
