@@ -15,6 +15,10 @@ device:
   controls:
     ctrl_joint_torques:
       size: 7
+    time_sent:
+      size: 1
+    desired_joint_positions:
+      size: 7
 hardware_communication:
   max_missed_control: 10
   control_period: 1000000 # in nano second
