@@ -55,6 +55,7 @@ class IiwaRobot(PinBulletWrapper):
         self.end_eff_ids = []
         controlled_joints = ["A1", "A2", "A3", "A4", "A5", "A6", "A7"]
         self.end_eff_ids.append(self.pin_robot.model.getFrameId('contact'))
+        self.nb_ee = len(self.end_eff_ids)
         self.joint_names = controlled_joints
 
         # Creates the wrapper by calling the super.__init__.
