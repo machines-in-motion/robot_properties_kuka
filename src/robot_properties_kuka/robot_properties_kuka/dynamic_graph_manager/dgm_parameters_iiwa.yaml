@@ -14,6 +14,8 @@ device:
       size: 7
     ft_sensor_wrench:
       size: 6
+    joint_torques_commanded:
+      size: 7
   controls:
     ctrl_joint_torques:
       size: 7
