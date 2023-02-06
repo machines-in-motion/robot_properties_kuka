@@ -367,7 +367,7 @@
           <mesh scale="0.001 0.001 0.001" filename="package://robot_properties_kuka/meshes/stl/assembled_ee.stl" />
         </geometry>
         <material name="White">
-          <color rgba="0.9 0.9 0.9 0.9"/>
+          <color rgba="0.9 0.9 0.9 0.7"/>
         </material>
       </visual>
       <collision>
@@ -376,7 +376,7 @@
           <mesh scale="0.001 0.001 0.001" filename="package://robot_properties_kuka/meshes/stl/assembled_ee.stl" />
         </geometry>
         <material name="White">
-          <color rgba="0.9 0.9 0.9 0.9"/>
+          <color rgba="0.9 0.9 0.9 0.7"/>
         </material>
       </collision>
     </link>
@@ -386,24 +386,25 @@
       <parent link="assembled_ee"/>
       <child link="contact"/>
       <!-- Joint placement -->
-      <origin rpy="-1.57079632679 0 0" xyz="0 0.1 0"/>
+      <origin rpy="-1.57079632679 0 0" xyz="0 0.06 0"/>
       <!-- Limits (usefull?) -->
       <limit effort="1000" lower="-10" upper="10" velocity="1000"/>
       <!-- pybullet simulation parameters -->
       <dynamics damping="0.0" friction="0.0"/>
     </joint>
 
-    <!-- CONTACT (modeled by a tennis ball) -->
+    <!-- CONTACT (modeled by a soft polystyrene ball) -->
     <link name="contact">
       <inertial>
         <origin rpy="0 0 0" xyz="0 0 0.0"/>
-        <mass value="0.057"/>
-        <inertia ixx="0.0000354" ixy="0.0" ixz="0.0" iyy="0.0000354" iyz="0.0" izz="0.0000354"/>
+        <mass value="0.014"/>
+        <inertia ixx="0.00000126" ixy="0.0" ixz="0.0" iyy="0.00000126" iyz="0.0" izz="0.00000126"/>
       </inertial>
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://robot_properties_kuka/meshes/tennis_ball_smaller.obj" />
+          <sphere radius="0.015" />
+          <!-- <mesh filename="package://robot_properties_kuka/meshes/tennis_ball_smaller.obj" /> -->
         </geometry>
         <material name="Green">
           <color rgba="0. 0.8 0. 0.8"/>
@@ -412,7 +413,8 @@
       <collision>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://robot_properties_kuka/meshes/tennis_ball_smaller.obj" />
+          <sphere radius="0.015" />
+          <!-- <mesh filename="package://robot_properties_kuka/meshes/tennis_ball_smaller.obj" /> -->
         </geometry>
         <material name="Green">
           <color rgba="0. 0.8 0. 0.8"/>
