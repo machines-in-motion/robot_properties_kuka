@@ -8,6 +8,8 @@ device:
       size: 7
     joint_velocities:
       size: 7
+    joint_accelerations:
+      size: 7
     joint_torques_external:
       size: 7
     joint_torques_total:

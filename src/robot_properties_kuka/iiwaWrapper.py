@@ -10,7 +10,7 @@ All rights reserved.
 
 import numpy as np
 import pybullet 
-from py_pinocchio_bullet.wrapper import PinBulletWrapper
+from bullet_utils.wrapper import PinBulletWrapper
 from robot_properties_kuka.config import IiwaConfig
 
 dt = 1e-3
