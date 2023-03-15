@@ -91,6 +91,7 @@ class IiwaReducedRobot(PinBulletWrapper):
         self.base_link_name = "iiwa_base"
         self.end_eff_ids = []
         self.end_eff_ids.append(self.pin_robot.model.getFrameId('contact'))
+        self.nb_ee = len(self.end_eff_ids)
         self.joint_names = controlled_joints
 
         # Get bullet map joint_name<->bullet_index
