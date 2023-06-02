@@ -341,8 +341,8 @@
     </link>
     
 
-    <!-- EE -->
-    <joint name="EE" type="fixed">
+    <!-- kuka_to_assembled_ee_joint -->
+    <joint name="kuka_to_assembled_ee_joint" type="fixed">
       <parent link="L7"/>
       <child link="assembled_ee"/>
       <!-- Joint placement -->
@@ -382,7 +382,7 @@
     </link>
 
     <!-- fixed joint assembled_ee <=> soft ball tip -->
-    <joint name="ee_to_contact_joint" type="fixed">
+    <joint name="EE" type="fixed">
       <parent link="assembled_ee"/>
       <child link="contact"/>
       <!-- Joint placement -->

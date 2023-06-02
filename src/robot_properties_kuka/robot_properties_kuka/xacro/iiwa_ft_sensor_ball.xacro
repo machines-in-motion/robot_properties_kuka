@@ -342,8 +342,8 @@
     
 
  
-    <!-- EE -->
-    <joint name="EE" type="fixed">
+    <!-- kuka_to_sensor_mount_joint -->
+    <joint name="kuka_to_sensor_mount_joint" type="fixed">
       <parent link="L7"/>
       <child link="kuka_to_sensor_mount"/>
       <!-- Joint placement -->
@@ -462,7 +462,7 @@
     </link>
 
     <!-- fixed joint ft_sensor <=> case_mount -->
-    <joint name="mount_to_case_joint" type="fixed">
+    <joint name="EE" type="fixed">
       <parent link="sensor_to_case_mount"/>
       <child link="contact"/>
       <!-- Joint placement -->
@@ -498,6 +498,11 @@
           <color rgba="0.8 0.8 0.8 1.0"/>
         </material>
       </collision>
+      <!-- Bullet specific paramters -->
+      <contact>
+        <lateral_friction value="0.0"/>
+        <restitution value="0.5"/>
+      </contact>
     </link>
 
     <!--Extensions -->
