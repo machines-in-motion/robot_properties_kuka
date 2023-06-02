@@ -89,6 +89,15 @@ class IiwaConfig(KukaAbstract):
     v0 = zero(robot_model.nv)
     a0 = zero(robot_model.nv)
 
+    # In case there is an ft sensor with custom mount piece :
+    # Get the name of the piece to which the CAD origin is attached
+    # This can be used to compute the sensor frame placement w.r.t. parent joint
+    if('shell' in urdf_path):
+        cad_origin_name = 'assembled_ee'
+    elif('ball' in urdf_path):
+        cad_origin_name = 'kuka_to_sensor_mount'
+    else:
+        pass
 
 class IiwaReducedConfig(IiwaConfig):
     '''

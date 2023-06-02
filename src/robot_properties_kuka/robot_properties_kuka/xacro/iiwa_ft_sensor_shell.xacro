@@ -341,12 +341,12 @@
     </link>
     
 
-    <!-- kuka_to_assembled_ee_joint -->
-    <joint name="kuka_to_assembled_ee_joint" type="fixed">
+    <!-- kuka_to_ee_joint -->
+    <joint name="kuka_to_ee_joint" type="fixed">
       <parent link="L7"/>
       <child link="assembled_ee"/>
       <!-- Joint placement -->
-      <origin rpy="1.57079632679 0 0" xyz="0 0 0.04"/>
+      <origin rpy="1.57079632679 0 0" xyz="0 0 0.045"/>
       <!-- Limits (usefull?) -->
       <limit effort="1000" lower="-10" upper="10" velocity="1000"/>
       <!-- pybullet simulation parameters -->

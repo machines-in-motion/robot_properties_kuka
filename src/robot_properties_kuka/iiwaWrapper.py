@@ -58,7 +58,7 @@ class IiwaRobot(PinBulletWrapper):
         self.nb_ee = len(self.end_eff_ids)
         self.joint_names = controlled_joints
 
-        # Creates the wrapper by calling the super.__init__.            
+        # Creates the wrapper by calling the super.__init__.          
         super(IiwaRobot, self).__init__(
             self.robotId, 
             self.pin_robot,
