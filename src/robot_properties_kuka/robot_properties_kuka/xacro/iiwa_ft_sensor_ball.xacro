@@ -358,7 +358,7 @@
     <!-- kuka_to_sensor_mount -->
     <link name="kuka_to_sensor_mount">
       <inertial>
-        <origin rpy="0 0 0" xyz="0 0.452 0"/>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
         <mass value="0.042647"/>
         <inertia ixx="0.0000014879" ixy="0.0" ixz="0.0" iyy="0.0001171" iyz="0.0" izz="0.0001171"/>
       </inertial>
