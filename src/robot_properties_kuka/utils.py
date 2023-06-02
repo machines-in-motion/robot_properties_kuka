@@ -22,13 +22,20 @@ except NameError: # python 3
     unicode = str
     encoding = {}
 
-def find_paths(robot_name, robot_family="kuka"):
+def find_paths(robot_name, robot_family="kuka", end_eff=None):
     with importlib_resources.path(__package__, "utils.py") as p:
             package_dir = p.parent.absolute()
     
     resources_dir = path.join(package_dir, "robot_properties_" + robot_family)
     dgm_yaml_path = path.join(resources_dir, "dynamic_graph_manager", "dgm_parameters_" + robot_name + ".yaml")
-    urdf_path = path.join(resources_dir, robot_name + ".urdf")
+    if(end_eff is None):
+        urdf_path = path.join(resources_dir, robot_name + ".urdf")
+    elif('ft_sensor_shell' in end_eff):
+        urdf_path = path.join(resources_dir, robot_name + "_ft_sensor_shell.urdf")
+    elif('ft_sensor_ball' in end_eff):
+        urdf_path = path.join(resources_dir, robot_name + "_ft_sensor_ball.urdf")
+    else:
+        print("ERROR: unknown end_eff arg. Must be in [None, 'ft_sensor']")
     srdf_path = path.join(resources_dir, "srdf", robot_family + ".srdf")
 
     if not path.exists(urdf_path):
@@ -52,7 +59,6 @@ def build_xacro_files(resources_dir):
         for afile in files:
             if afile.endswith(".urdf.xacro"):
                 xacro_files.append(path.join(root, afile))
-
     if not path.exists(build_folder):
         mkdir(build_folder)
 

@@ -1,0 +1,510 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <!-- Import all Gazebo-customization elements, including Gazebo colors -->
+  <xacro:include filename="iiwa.gazebo.xacro" />
+  <!-- Import Transmissions -->
+  <xacro:include filename="iiwa.transmission.xacro" />
+  
+  <!-- some constants -->
+  <xacro:property name="safety_controller_k_pos" value="100" />
+  <xacro:property name="safety_controller_k_vel" value="2" /> 
+  <xacro:property name="joint_damping" value="0.0" />
+  
+  <xacro:macro name="KUKAiiwa14" params="robot_name *origin">
+    
+    <!--joint between WORLD and BASE-->
+    <joint name="A0" type="fixed">
+      <xacro:insert_block name="origin"/>
+      <parent link="world"/>
+      <child link="iiwa_base"/>
+    </joint>
+    
+
+    <!-- BASE -->
+    <link name="iiwa_base">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="5"/>
+        <inertia ixx="0.05"  ixy="0"  ixz="0" iyy="0.06" iyz="0" izz="0.03" />
+      </inertial>
+      
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_base.stl" />
+        </geometry>
+        <material name="Grey"/>
+      </visual>
+      
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_base.stl" />
+        </geometry>
+        <material name="Grey"/>
+      </collision>
+      
+      <self_collision_checking>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <capsule radius="0.15" length="0.25"/>
+        </geometry>
+      </self_collision_checking>
+    </link>
+    
+
+    <!-- joint between base and link1 -->
+    <joint name="A1" type="revolute">
+      <origin xyz="0.00000 0.00000 0.15750" rpy="0.0 0.0 0.0"/>
+      <parent link="iiwa_base"/>
+      <child  link="L1"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-2.96706" upper="2.96706" velocity="1.48353" effort="320"/>
+      <!-- <safety_controller soft_lower_limit="${-168 * PI / 180}"
+                          soft_upper_limit="${168 * PI / 180}"
+                          k_position="${safety_controller_k_pos}"
+                          k_velocity="${safety_controller_k_vel}"/> 
+      <dynamics damping="${joint_damping}"/> -->
+    </joint>
+    
+
+    <!-- LINK 1-->
+    <link name="L1">
+      <inertial>
+        <origin xyz="0.00000 0.00000 0.00000"/>
+        <mass value="3.94781"/>
+        <inertia ixx="0.00455" iyy="0.00454" izz="0.00029" ixy="0.00000" ixz="-0.00000" iyz="-0.00001"/>
+      </inertial>
+      
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_1.stl" />
+        </geometry>
+        <material name="Orange"/>
+      </visual>
+      
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_1.stl" />
+        </geometry>
+        <material name="Orange"/>
+      </collision>
+    </link>
+    
+
+    <!-- joint between link1 and link2 -->
+    <joint name="A2" type="revolute">
+      <origin xyz="0.00000 0.00000 0.20250" rpy="2.3561944901923457 -1.5707962635746238 2.3561944901923457"/>
+      <parent link="L1"/>
+      <child  link="L2"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-2.0944" upper="2.0944" velocity="1.48353" effort="320"/>
+      <!-- <safety_controller soft_lower_limit="${-118 * PI / 180}"
+                          soft_upper_limit="${118 * PI / 180}"
+                          k_position="${safety_controller_k_pos}"
+                          k_velocity="${safety_controller_k_vel}"/> 
+      <dynamics damping="${joint_damping}"/> -->
+    </joint>
+
+
+    <!-- LINK 2-->
+    <link name="L2">
+      <inertial>
+        <origin xyz="0.0003 0.059 0.042" rpy="0 0 0"/>
+        <mass value="4.50275"/>
+        <inertia ixx="0.00032"  ixy="0"  ixz="0" iyy="0.00010" iyz="0" izz="0.00042" />
+      </inertial>
+      
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_2.stl" />
+        </geometry>
+        <material name="Orange"/>
+      </visual>
+      
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_2.stl" />
+        </geometry>
+        <material name="Orange"/>
+      </collision>
+    </link>
+    
+
+    <!-- joint between link2 and link3 -->
+    <joint name="A3" type="revolute">
+      <origin xyz="0.20450 0.00000 0.00000" rpy="1.5707963267948948 -4.371139000186238E-8 1.5707963705062866"/>
+      <parent link="L2"/>
+      <child  link="L3"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-2.96706" upper="2.96706" velocity="1.74533" effort="176"/>
+      <!-- <safety_controller soft_lower_limit="${-168 * PI / 180}"
+                          soft_upper_limit="${168 * PI / 180}"
+                          k_position="${safety_controller_k_pos}"
+                          k_velocity="${safety_controller_k_vel}"/> 
+      <dynamics damping="${joint_damping}"/> -->
+    </joint>
+    
+
+    <!-- LINK 3-->
+    <link name="L3">
+      <inertial>
+        <origin xyz="0 0.03 0.13" rpy="0 0 0"/>
+        <mass value="2.45520"/>
+        <inertia ixx="0.00223"  ixy="-0.00005"  ixz="0.00007" iyy="0.00219" iyz="0.00007" izz="0.00073" />
+      </inertial>
+      
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_3.stl" />
+        </geometry>
+        <material name="Orange"/>
+      </visual>
+      
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_3.stl" />
+        </geometry>
+        <material name="Orange"/>
+      </collision>
+    </link>
+    
+
+    <!-- joint between link3 and link4 -->
+    <joint name="A4" type="revolute">
+      <origin xyz="0.00000 0.00000 0.21550" rpy="1.5707963705062866 -0.0 0.0"/>
+      <parent link="L3"/>
+      <child  link="L4"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-2.0944" upper="2.0944" velocity="1.309" effort="176"/>
+      <!-- <safety_controller soft_lower_limit="${-118 * PI / 180}"
+                          soft_upper_limit="${118 * PI / 180}"
+                          k_position="${safety_controller_k_pos}"
+                          k_velocity="${safety_controller_k_vel}"/> 
+      <dynamics damping="${joint_damping}"/> -->
+    </joint>
+
+
+    <!-- LINK 4-->
+    <link name="L4">
+      <inertial>
+        <origin xyz="0 0.067 0.034" rpy="0 0 0"/>
+        <mass value="2.61155"/>
+        <inertia ixx="0.03844"  ixy="0.00088"  ixz="-0.00112" iyy="0.01144" iyz="-0.00111" izz="0.04958" />
+      </inertial>
+      
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_4.stl" />
+        </geometry>
+        <material name="Orange"/>
+      </visual>
+      
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_4.stl" />
+        </geometry>
+        <material name="Orange"/>
+      </collision>
+    </link>
+    
+
+    <!-- joint between link4 and link5 -->
+    <joint name="A5" type="revolute">
+      <origin xyz="0.00000 0.18450 0.00000" rpy="-1.5707963705062866 0.0 -0.0"/>
+      <parent link="L4"/>
+      <child  link="L5"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-2.96706" upper="2.96706" velocity="2.26893" effort="110"/>
+      <!-- <safety_controller soft_lower_limit="${-168 * PI / 180}"
+                          soft_upper_limit="${168 * PI / 180}"
+                          k_position="${safety_controller_k_pos}"
+                          k_velocity="${safety_controller_k_vel}"/> 
+      <dynamics damping="${joint_damping}"/> -->
+    </joint>
+
+
+    <!-- LINK 5-->
+    <link name="L5">
+      <inertial>
+        <origin xyz="0.0001 0.021 0.076" rpy="0 0 0"/>
+        <mass value="3.41000"/>
+        <inertia ixx="0.00277"  ixy="-0.00001"  ixz="0.00001" iyy="0.00284" iyz="0" izz="0.00012" />
+      </inertial>
+      
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_5.stl" />
+        </geometry>
+        <material name="Orange"/>
+      </visual>
+      
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_5.stl" />
+        </geometry>
+        <material name="Orange"/>
+      </collision>
+    </link>
+    
+
+    <!-- joint between link5 and link6 -->
+    <joint name="A6" type="revolute">
+      <origin xyz="0.00000 -0.06070 0.21550" rpy="2.3561944901923457 -1.5707962635746238 2.3561944901923457"/>
+      <parent link="L5"/>
+      <child  link="L6"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-2.0944" upper="2.0944" velocity="2.35619" effort="40"/>
+      <!-- <safety_controller soft_lower_limit="${-118 * PI / 180}"
+                          soft_upper_limit="${118 * PI / 180}"
+                          k_position="${safety_controller_k_pos}"
+                          k_velocity="${safety_controller_k_vel}"/> 
+      <dynamics damping="${joint_damping}"/> -->
+    </joint>
+      
+
+    <!-- LINK 6-->
+    <link name="L6">
+      <inertial>
+        <origin xyz="0 0.0006 0.0004" rpy="0 0 0"/>
+        <mass value="3.38795"/>
+        <inertia ixx="0.00050"  ixy="-0.00005"  ixz="-0.00003" iyy="0.00281" iyz="-0.00004" izz="0.00232" />
+      </inertial>
+      
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_6.stl" />
+        </geometry>
+        <material name="Orange"/>
+      </visual>
+      
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_6.stl" />
+        </geometry>
+        <material name="Orange"/>
+      </collision>
+    </link>
+    
+
+    <!-- joint between link6 and link7 -->
+    <joint name="A7" type="revolute">
+      <origin xyz="0.08100 0.00000 0.06070" rpy="1.5707963267948948 -4.371139000186238E-8 1.5707963705062866"/>
+      <parent link="L6"/>
+      <child  link="L7"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-3.05433" upper="3.05433" velocity="2.35619" effort="40" />
+      <!-- <safety_controller soft_lower_limit="${-173 * PI / 180}"
+                          soft_upper_limit="${173 * PI / 180}"
+                          k_position="${safety_controller_k_pos}"
+                          k_velocity="${safety_controller_k_vel}"/> 
+      <dynamics damping="${joint_damping}"/> -->
+    </joint>
+    
+
+    <!-- LINK 7-->
+    <link name="L7">
+      <inertial>
+        <origin xyz="0 0 0.02" rpy="0 0 0"/>
+        <mass value="0.35432"/>
+        <inertia ixx="0.00795"  ixy="0.00022"  ixz="-0.00029" iyy="0.01083" iyz="-0.00029" izz="0.00294" />
+      </inertial>
+      
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_7.stl" />
+        </geometry>
+        <material name="Grey"/>
+      </visual>
+      
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robot_properties_kuka/meshes/stl/iiwa_link_7.stl" />
+        </geometry>
+        <material name="Grey"/>
+      </collision>
+    </link>
+    
+
+ 
+    <!-- EE -->
+    <joint name="EE" type="fixed">
+      <parent link="L7"/>
+      <child link="kuka_to_sensor_mount"/>
+      <!-- Joint placement -->
+      <origin rpy="1.57079632679 0 0" xyz="0 0.0 0.045"/>
+      <!-- Limits (usefull?) -->
+      <limit effort="1000" lower="-10" upper="10" velocity="1000"/>
+      <!-- pybullet simulation parameters -->
+      <dynamics damping="0.0" friction="0.0"/>
+    </joint>
+
+
+    <!-- kuka_to_sensor_mount -->
+    <link name="kuka_to_sensor_mount">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0 0.452 0"/>
+        <mass value="0.042647"/>
+        <inertia ixx="0.0000014879" ixy="0.0" ixz="0.0" iyy="0.0002270" iyz="0.0000000017" izz="0.0001171"/>
+      </inertial>
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh scale="0.001 0.001 0.001" filename="package://robot_properties_kuka/meshes/stl/kuka_to_sensor_mount.stl" />
+        </geometry>
+        <material name="grey">
+          <color rgba="0.8 0.8 0.8 1.0"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh scale="0.001 0.001 0.001" filename="package://robot_properties_kuka/meshes/stl/kuka_to_sensor_mount.stl" />
+        </geometry>
+        <material name="grey">
+          <color rgba="0.8 0.8 0.8 1.0"/>
+        </material>
+      </collision>
+    </link>
+
+    <!-- fixed joint sensor_mount <=> sensor -->
+    <joint name="mount_to_sensor_joint" type="fixed">
+      <parent link="kuka_to_sensor_mount"/>
+      <child link="ft_sensor"/>
+      <!-- Joint placement -->
+      <origin rpy="-1.57079632679 0 0" xyz="0 0.018 0.0"/>
+      <!-- Limits (usefull?) -->
+      <limit effort="1000" lower="-10" upper="10" velocity="1000"/>
+      <!-- pybullet simulation parameters -->
+      <dynamics damping="0.0" friction="0.0"/>
+    </joint>
+
+
+    <!-- ft_sensor (Schunk) -->
+    <link name="ft_sensor">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="0.091"/>
+        <inertia ixx="0.0000133864" ixy="0" ixz="0" iyy="0.0000133864" iyz="0" izz="0.000023034375"/>
+      </inertial>
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+            <cylinder length="0.0157" radius="0.0225"/>
+        </geometry>
+        <material name="grey">
+          <color rgba="0.8 0.8 0.8 1.0"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <cylinder length="0.0157" radius="0.0225"/>
+        </geometry>
+        <material name="grey">
+          <color rgba="0.8 0.8 0.8 1.0"/>
+        </material>
+      </collision>
+    </link>
+
+    <!-- fixed joint ft_sensor <=> case_mount -->
+    <joint name="sensor_to_case_joint" type="fixed">
+      <parent link="ft_sensor"/>
+      <child link="sensor_to_case_mount"/>
+      <!-- Joint placement -->
+      <origin rpy="1.57079632679 0 0" xyz="0 0.0 0.008"/>
+      <!-- Limits (usefull?) -->
+      <limit effort="1000" lower="-10" upper="10" velocity="1000"/>
+      <!-- pybullet simulation parameters -->
+      <dynamics damping="0.0" friction="0.0"/>
+    </joint>
+
+    <!-- sensor_to_case_mount -->
+    <link name="sensor_to_case_mount">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0 0.000916 0"/>
+        <mass value="0.00895"/>
+        <inertia ixx="0.0001168" ixy="0.0" ixz="0.0" iyy="0.0002270" iyz="0.0000000017" izz="0.0001171"/>
+      </inertial>
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh scale="0.001 0.001 0.001" filename="package://robot_properties_kuka/meshes/stl/sensor_to_case_mount.stl" />
+        </geometry>
+        <material name="grey">
+          <color rgba="0.8 0.8 0.8 1.0"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh scale="0.001 0.001 0.001" filename="package://robot_properties_kuka/meshes/stl/sensor_to_case_mount.stl" />
+        </geometry>
+        <material name="grey">
+          <color rgba="0.8 0.8 0.8 1.0"/>
+        </material>
+      </collision>
+    </link>
+
+    <!-- fixed joint ft_sensor <=> case_mount -->
+    <joint name="mount_to_case_joint" type="fixed">
+      <parent link="sensor_to_case_mount"/>
+      <child link="contact"/>
+      <!-- Joint placement -->
+      <origin rpy="0 1.57079632679 0" xyz="0 0.003 0.0"/>
+      <!-- Limits (usefull?) -->
+      <limit effort="1000" lower="-10" upper="10" velocity="1000"/>
+      <!-- pybullet simulation parameters -->
+      <dynamics damping="0.0" friction="0.0"/>
+    </joint>
+
+    <!-- contact = flang mount ball transfer-->
+    <link name="contact">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0 0.000916 0"/>
+        <mass value="0.00895"/>
+        <inertia ixx="0.0001168" ixy="0.0" ixz="0.0" iyy="0.0002270" iyz="0.0000000017" izz="0.0001171"/>
+      </inertial>
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <!-- <mesh scale="0.03937007874 0.03937007874 0.03937007874" filename="package://robot_properties_kuka/meshes/stl/5674K57_flange_mount_ball_transfer.stl" /> -->
+          <mesh scale="0.0254 0.0254 0.0254" filename="package://robot_properties_kuka/meshes/stl/5674K57_flange_mount_ball_transfer.stl" />
+        </geometry>
+        <material name="grey">
+          <color rgba="0.8 0.8 0.8 1.0"/>
+        </material>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh scale="0.0254 0.0254 0.0254" filename="package://robot_properties_kuka/meshes/stl/5674K57_flange_mount_ball_transfer.stl" />
+        </geometry>
+        <material name="grey">
+          <color rgba="0.8 0.8 0.8 1.0"/>
+        </material>
+      </collision>
+    </link>
+
+    <!--Extensions -->
+    <xacro:iiwa_gazebo robot_name="KUKAiiwa14"/>
+    <!-- <xacro:iiwa_transmission hardware_interface="${hardware_interface}"/> -->
+    
+  </xacro:macro>
+  
+</robot>

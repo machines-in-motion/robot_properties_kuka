@@ -39,7 +39,7 @@ class IiwaConfig(KukaAbstract):
     robot_family = "kuka"   
     robot_name = "iiwa"
 
-    paths = find_paths(robot_name)
+    paths = find_paths(robot_name, end_eff='ft_sensor_ball')
     meshes_path = paths["package"]
     yaml_path = paths["dgm_yaml"]
     urdf_path = paths["urdf"]
