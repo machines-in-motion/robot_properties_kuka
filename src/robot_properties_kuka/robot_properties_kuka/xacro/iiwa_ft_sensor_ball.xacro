@@ -360,7 +360,7 @@
       <inertial>
         <origin rpy="0 0 0" xyz="0 0.452 0"/>
         <mass value="0.042647"/>
-        <inertia ixx="0.0000014879" ixy="0.0" ixz="0.0" iyy="0.0002270" iyz="0.0000000017" izz="0.0001171"/>
+        <inertia ixx="0.0000014879" ixy="0.0" ixz="0.0" iyy="0.0001171" iyz="0.0" izz="0.0001171"/>
       </inertial>
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -483,8 +483,7 @@
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <!-- <mesh scale="0.03937007874 0.03937007874 0.03937007874" filename="package://robot_properties_kuka/meshes/stl/5674K57_flange_mount_ball_transfer.stl" /> -->
-          <mesh scale="0.0254 0.0254 0.0254" filename="package://robot_properties_kuka/meshes/stl/5674K57_flange_mount_ball_transfer.stl" />
+          <mesh scale="0.0254 0.0254 0.0254" filename="package://robot_properties_kuka/meshes/obj/5674K57_flange_mount_ball_transfer.obj" />
         </geometry>
         <material name="grey">
           <color rgba="0.8 0.8 0.8 1.0"/>
@@ -493,7 +492,7 @@
       <collision>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh scale="0.0254 0.0254 0.0254" filename="package://robot_properties_kuka/meshes/stl/5674K57_flange_mount_ball_transfer.stl" />
+          <mesh scale="0.0254 0.0254 0.0254" filename="package://robot_properties_kuka/meshes/obj/5674K57_flange_mount_ball_transfer.obj" />
         </geometry>
         <material name="grey">
           <color rgba="0.8 0.8 0.8 1.0"/>
