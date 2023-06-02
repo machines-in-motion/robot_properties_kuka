@@ -385,7 +385,7 @@
     <!-- fixed joint sensor_mount <=> sensor -->
     <joint name="mount_to_sensor_joint" type="fixed">
       <parent link="kuka_to_sensor_mount"/>
-      <child link="ft_sensor"/>
+      <child link="ft_sensor_link"/>
       <!-- Joint placement -->
       <origin rpy="-1.57079632679 0 0" xyz="0 0.01795 0"/>
       <!-- Limits (usefull?) -->
@@ -395,8 +395,8 @@
     </joint>
 
 
-    <!-- ft_sensor (Schunk) -->
-    <link name="ft_sensor">
+    <!-- ft_sensor_link (Schunk) -->
+    <link name="ft_sensor_link">
       <inertial>
         <origin rpy="0 0 0" xyz="0 0 0.00785"/>
         <mass value="0.091"/>
@@ -422,9 +422,9 @@
       </collision>
     </link>
 
-    <!-- fixed joint ft_sensor <=> case_mount -->
+    <!-- fixed joint ft_sensor_link <=> case_mount -->
     <joint name="sensor_to_case_joint" type="fixed">
-      <parent link="ft_sensor"/>
+      <parent link="ft_sensor_link"/>
       <child link="sensor_to_case_mount"/>
       <!-- Joint placement -->
       <origin rpy="1.57079632679 0 0" xyz="0 0 0.00785"/>
@@ -461,7 +461,7 @@
       </collision>
     </link>
 
-    <!-- fixed joint ft_sensor <=> case_mount -->
+    <!-- fixed joint sensor_to_case_mount <=> ball_transfer -->
     <joint name="case_mount_to_ball_transfer" type="fixed">
       <parent link="sensor_to_case_mount"/>
       <child link="ball_transfer"/>
@@ -510,7 +510,7 @@
       <parent link="ball_transfer"/>
       <child link="contact"/>
       <!-- Joint placement -->
-      <origin rpy="0 -1.57079632679 -1.57079632679" xyz="0 0.0254 0"/>
+      <origin rpy="0 -1.57079632679 -1.57079632679" xyz="0 0.027 0"/>
       <!-- Limits (usefull?) -->
       <limit effort="1000" lower="-10" upper="10" velocity="1000"/>
       <!-- pybullet simulation parameters -->
@@ -546,7 +546,7 @@
       </collision>
       <!-- Bullet specific paramters -->
       <contact>
-        <lateral_friction value="1.0"/>
+        <lateral_friction value="0."/>
         <restitution value="0.5"/>
       </contact>
     </link>
