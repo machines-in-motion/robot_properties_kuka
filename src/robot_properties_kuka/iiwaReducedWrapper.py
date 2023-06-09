@@ -91,6 +91,7 @@ class IiwaReducedRobot(PinBulletWrapper):
         self.base_link_name = "iiwa_base"
         self.end_eff_ids = []
         self.end_eff_ids.append(self.pin_robot.model.getFrameId('contact'))
+        self.nb_ee = len(self.end_eff_ids)
         self.joint_names = controlled_joints
 
         # Get bullet map joint_name<->bullet_index
@@ -116,6 +117,14 @@ class IiwaReducedRobot(PinBulletWrapper):
         # Creates the wrapper by calling the super.__init__.
         # wrapper created from REDUCED model i.e. will only map controlled pin joints to bullet joints 
         # and consider fixed base 
+        print(self.urdf_path)
+        if('shell' in self.urdf_path):
+            self.cad_origin_name = 'assembled_ee'
+        elif('ball' in self.urdf_path):
+            self.cad_origin_name = 'kuka_to_sensor_mount'
+        else:
+            pass
+        print(self.cad_origin_name)
         super(IiwaReducedRobot, self).__init__(
                     self.robotId, 
                     self.pin_robot,

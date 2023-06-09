@@ -10,7 +10,7 @@ All rights reserved.
 
 import numpy as np
 import pybullet 
-from py_pinocchio_bullet.wrapper import PinBulletWrapper
+from bullet_utils.wrapper import PinBulletWrapper
 from robot_properties_kuka.config import IiwaConfig
 
 dt = 1e-3
@@ -55,9 +55,10 @@ class IiwaRobot(PinBulletWrapper):
         self.end_eff_ids = []
         controlled_joints = ["A1", "A2", "A3", "A4", "A5", "A6", "A7"]
         self.end_eff_ids.append(self.pin_robot.model.getFrameId('contact'))
+        self.nb_ee = len(self.end_eff_ids)
         self.joint_names = controlled_joints
 
-        # Creates the wrapper by calling the super.__init__.
+        # Creates the wrapper by calling the super.__init__.          
         super(IiwaRobot, self).__init__(
             self.robotId, 
             self.pin_robot,
